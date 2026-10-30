@@ -1,0 +1,38 @@
+/* before / after mapping */
+.map { display: flex; flex-direction: column; gap: 2px; }
+.mapRow { display: grid; grid-template-columns: 1fr auto 1fr; gap: clamp(16px, 3vw, 40px); align-items: center; padding: clamp(18px, 2.4vw, 28px) 0; border-top: 1px solid var(--border); }
+.mapRow:last-child { border-bottom: 1px solid var(--border); }
+@media (max-width: 760px) { .mapRow { grid-template-columns: 1fr; gap: 10px; text-align: left; } }
+.mapBefore { color: var(--fg-subtle); font-size: var(--text-base); line-height: 1.5; }
+.mapArrow { color: var(--accent); }
+@media (max-width: 760px) { .mapArrow { transform: rotate(90deg); width: fit-content; } }
+.mapAfter { display: flex; align-items: center; gap: 14px; }
+.mapAfterIcon { width: 42px; height: 42px; border-radius: var(--r-md); display: grid; place-items: center; color: var(--accent); background: var(--accent-quiet); border: 1px solid var(--border-gold); flex: none; }
+.mapAfterText b { font-family: var(--font-display); font-size: var(--text-lg); color: var(--fg); letter-spacing: var(--track-tight); }
+.mapAfterText span { display: block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+
+/* triad */
+.triad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 800px) { .triad { grid-template-columns: 1fr; } }
+.triadCard { padding: clamp(28px, 3vw, 40px); border-radius: var(--r-xl); border: 1px solid var(--border-strong); background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); box-shadow: inset 0 1px 0 rgba(255,252,247,.06), 0 2px 10px -4px rgba(0,0,0,.5); position: relative; overflow: hidden; }
+.triadCard::before { content: ''; position: absolute; inset: 0; background: radial-gradient(90% 90% at 50% 0%, rgba(237,171,72,.08), transparent 60%); opacity: 0; transition: opacity .5s; }
+.triadCard:hover::before { opacity: 1; }
+.triadName { font-family: var(--font-display); font-size: var(--text-2xl); letter-spacing: var(--track-tight); }
+.triadSans { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin: 8px 0 16px; }
+.triadBody { color: var(--fg-muted); line-height: 1.6; }
+.triadLine { text-align: center; margin-top: 36px; font-family: var(--font-display); font-size: var(--text-2xl); letter-spacing: var(--track-tight); color: var(--fg); }
+.triadLine b { color: var(--accent); font-weight: 600; }
+
+/* arc grid */
+.arcs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 920px) { .arcs { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .arcs { grid-template-columns: 1fr; } }
+.arc { position: relative; padding: clamp(26px, 2.6vw, 34px); border-radius: var(--r-xl); border: 1px solid var(--border-strong); overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,.034), rgba(255,255,255,.012)); box-shadow: inset 0 1px 0 rgba(255,252,247,.06), 0 2px 10px -4px rgba(0,0,0,.5); transition: border-color .4s var(--ease-out), transform .4s var(--ease-out), box-shadow .4s var(--ease-out); display: flex; flex-direction: column; min-height: 250px; }
+.arc:hover { border-color: var(--border-gold); transform: translateY(-5px); box-shadow: inset 0 1px 0 rgba(255,240,210,.14), var(--shadow-md), 0 0 0 1px rgba(237,171,72,.14); }
+.arcNum { position: absolute; top: 18px; right: 22px; font-family: var(--font-display); font-size: 48px; font-weight: 700; color: transparent; -webkit-text-stroke: 1px var(--border-gold); opacity: .5; line-height: 1; }
+.arcIcon { width: 48px; height: 48px; border-radius: var(--r-md); display: grid; place-items: center; color: var(--accent); background: var(--accent-quiet); border: 1px solid var(--border-gold); margin-bottom: 22px; }
+.arcName { font-family: var(--font-display); font-size: var(--text-2xl); letter-spacing: var(--track-tight); display: flex; align-items: baseline; gap: 10px; }
+.arcName em { font-style: normal; font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.arcLine { margin-top: 10px; color: var(--fg-muted); line-height: 1.55; flex: 1; }
+.arcAbsorbs { margin-top: 18px; font-family: var(--font-mono); font-size: 11px; color: var(--fg-subtle); letter-spacing: .02em; }
+.arcGo { margin-top: 16px; display: inline-flex; align-items: center; gap: 7px; color: var(--accent); font-weight: 600; font-size: var(--text-sm); }

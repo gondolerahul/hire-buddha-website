@@ -1,0 +1,8 @@
+{
+  "count": 192,
+  "pattern": "/sequences/homepage/frame_{n}.webp",
+  "pad": 4,
+  "width": 1280,
+  "height": 1280,
+  "fps": 24.0
+}

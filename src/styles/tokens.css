@@ -1,0 +1,225 @@
+/* ============================================================================
+   HIREBUDDHA — DESIGN TOKENS  ·  "Towards digital enlightenment."
+   Ported from buddha-cognitive-lab-design-system/project/colors_and_type.css
+   (the single source of truth). Google faces are loaded via next/font and
+   exposed as --font-*-next; the Roblox logotype is self-hosted from /fonts.
+   ============================================================================ */
+
+/* ---- Logotype substitute (angular, echoes the faceted wordmark) ---------- */
+@font-face {
+  font-family: 'Roblox';
+  src: url('/fonts/RobloxFontLight-qZyR6.ttf') format('truetype');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Roblox';
+  src: url('/fonts/RobloxFontRegular-JRrqB.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Roblox';
+  src: url('/fonts/RobloxFontBold-DOnZE.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Roblox';
+  src: url('/fonts/RobloxFontBlack-x3y2j.ttf') format('truetype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Roblox Outline';
+  src: url('/fonts/RobloxBlackOutline-Wym6V.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* ============================================================= BRAND GOLD */
+  --gold-100: #fff3dc;
+  --gold-200: #ffe6bd;
+  --gold-300: #fdc871;   /* light logo stop */
+  --gold-400: #f4b65c;
+  --gold-500: #edab48;   /* core amber of the mark */
+  --gold-600: #d2923a;
+  --gold-700: #a8722a;
+  --gold-800: #7d551f;
+  --gold-900: #4f3614;
+
+  --accent:        #edab48;
+  --accent-hover:  #f4b65c;
+  --accent-press:  #d2923a;
+  --accent-quiet:  rgba(237,171,72,.12);
+  --on-accent:     #2a1d08;
+
+  /* ----------------------------------------------------------- INK / NEUTRALS */
+  --ink-950: #0a0908;    /* canvas / page background */
+  --ink-900: #100e0c;
+  --ink-800: #1a1714;
+  --ink-700: #262220;
+  --ink-500: #4a443e;
+  --ink-400: #6b645c;
+  --ink-200: #b4aaa0;
+  --ink-50:  #ece7e0;
+  --white:   #fffdf9;
+
+  --bg:        var(--ink-950);
+  --surface:   #141210;
+  --surface-2: #1c1916;
+  --surface-3: #241f1b;
+
+  /* ------------------------------------------------------------------- TEXT */
+  --fg:        #f6f1e9;
+  --fg-muted:  #b3aaa0;
+  --fg-subtle: #7c746b;
+  --fg-faint:  #544d46;
+
+  /* ----------------------------------------------------------- LINES & BORDERS */
+  --border:        rgba(255,240,220,.08);
+  --border-strong: rgba(255,240,220,.16);
+  --border-gold:   rgba(237,171,72,.40);
+
+  /* ---------------------------------------------- SEMANTIC (restrained, warm) */
+  --positive: #7bb487;
+  --negative: #d4664f;
+  --warning:  var(--gold-500);
+
+  /* ------------------------------------------------------------------- GRADIENTS */
+  --gradient-gold: linear-gradient(105deg, #fdc871 0%, #edab48 32%, #ffefd8 58%, #fdc871 100%);
+  --gradient-gold-metallic: linear-gradient(90deg, #fff1cf 0%, #f6c96f 18%, #e3a23d 42%, #b9791f 56%, #f0bd5e 78%, #ffe7b0 100%);
+  --gradient-gold-shine: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.72) 48%, transparent 64%);
+  --gradient-gold-conic: conic-gradient(from 210deg, #8a5a18, #ffe7b0, #e3a23d, #fff1cf, #b9791f, #f6c96f, #8a5a18);
+  --glow-gold: radial-gradient(circle at center, rgba(237,171,72,.30) 0%, rgba(237,171,72,.08) 42%, transparent 70%);
+
+  /* ------------------------------------------------------------------- ELEVATION */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.5);
+  --shadow-md: 0 12px 34px -14px rgba(0,0,0,.66);
+  --shadow-lg: 0 30px 72px -22px rgba(0,0,0,.74);
+  --shadow-gold: 0 8px 30px -8px rgba(237,171,72,.40);
+  --focus-ring: 0 0 0 3px rgba(237,171,72,.32);
+
+  /* ============================================================ LIQUID GLASS */
+  --glass-tint:        rgba(26,23,20,.55);
+  --glass-tint-light:  rgba(60,54,48,.42);
+  --glass-tint-gold:   rgba(237,171,72,.14);
+  --glass-tint-strong: rgba(20,17,15,.68);
+  --glass-blur:        blur(20px) saturate(175%);
+  --glass-blur-strong: blur(36px) saturate(200%);
+  --glass-border: rgba(255,248,238,.16);
+  --glass-edge:
+    0 10px 34px -10px rgba(0,0,0,.55),
+    inset 0 1px 0 rgba(255,252,247,.40),
+    inset 0 -1px 1px rgba(0,0,0,.35);
+  --glass-edge-gold:
+    0 12px 40px -10px rgba(0,0,0,.55),
+    inset 0 1px 0 rgba(255,240,210,.55),
+    inset 0 0 0 1px rgba(237,171,72,.22),
+    inset 0 -2px 4px rgba(120,72,16,.40);
+  --glass-sheen: linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,.05) 22%, transparent 46%);
+
+  /* ------------------------------------------------------------------- RADII */
+  --r-xs:  4px;  --r-sm:  7px;  --r-md:  11px; --r-lg:  16px;
+  --r-xl:  22px; --r-2xl: 30px; --r-pill: 999px;
+
+  /* ------------------------------------------------------------------- SPACING (4px grid) */
+  --s-1: 4px;   --s-2: 8px;   --s-3: 12px;  --s-4: 16px;  --s-5: 24px;
+  --s-6: 32px;  --s-7: 48px;  --s-8: 64px;  --s-9: 96px;  --s-10: 128px;
+
+  /* ------------------------------------------------------------------- MOTION */
+  --dur: .22s;
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --ease-in-out: cubic-bezier(.65,0,.35,1);
+  --ease-expo: cubic-bezier(.16,1,.3,1);
+
+  /* =============================================================== TYPOGRAPHY
+     The Google faces arrive from next/font as --font-*-next; the DS family
+     tokens wrap them with the canonical fallbacks. */
+  --font-logo:    'Roblox', var(--font-display-next), 'Space Grotesk', system-ui, sans-serif;
+  --font-display: var(--font-display-next), 'Space Grotesk', system-ui, sans-serif;
+  --font-body:    var(--font-body-next), 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono:    var(--font-mono-next), 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* Fluid type scale (clamped — display ceiling ~96px per craft rules) */
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-md:   18px;
+  --text-lg:   20px;
+  --text-xl:   clamp(22px, 2.2vw, 24px);
+  --text-2xl:  clamp(26px, 3vw, 30px);
+  --text-3xl:  clamp(30px, 4vw, 38px);
+  --text-4xl:  clamp(36px, 5vw, 48px);
+  --text-5xl:  clamp(44px, 6.4vw, 64px);
+  --text-6xl:  clamp(52px, 8vw, 84px);
+  --text-7xl:  clamp(60px, 10vw, 96px);
+
+  /* Line heights */
+  --lh-tight: 1.05;
+  --lh-snug: 1.16;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+
+  /* Tracking */
+  --track-tight: -0.02em;
+  --track-tighter: -0.035em;
+  --track-wide: 0.04em;
+  --track-eyebrow: 0.16em;
+
+  /* Layout */
+  --maxw: 1240px;
+  --maxw-wide: 1440px;
+  --gutter: clamp(20px, 5vw, 64px);
+
+  /* Z-index scale (semantic) */
+  --z-base: 0;
+  --z-canvas: 1;
+  --z-content: 2;
+  --z-cursor: 60;
+  --z-header: 70;
+  --z-overlay: 80;
+  --z-modal: 90;
+}
+
+/* ============================================================ LIGHT THEME */
+[data-theme="light"] {
+  --bg:        #f6f2ea;
+  --surface:   #fffdf9;
+  --surface-2: #f1ece2;
+  --surface-3: #e9e2d5;
+
+  --fg:        #1a1611;
+  --fg-muted:  #5c554b;
+  --fg-subtle: #8a8074;
+  --fg-faint:  #b6ac9d;
+
+  --border:        rgba(40,30,15,.10);
+  --border-strong: rgba(40,30,15,.18);
+  --border-gold:   rgba(200,140,40,.50);
+
+  --accent:        #c98f2f;
+  --accent-hover:  #b87f25;
+  --accent-press:  #a06e1f;
+  --accent-quiet:  rgba(201,143,47,.12);
+  --gold-300:      #b9791f;
+
+  --positive: #4f8d63;
+  --negative: #bb4a34;
+
+  --glow-gold: radial-gradient(circle at center, rgba(201,143,47,.22) 0%, rgba(201,143,47,.06) 42%, transparent 70%);
+  --shadow-md: 0 12px 34px -14px rgba(60,45,20,.28);
+  --shadow-lg: 0 30px 72px -22px rgba(60,45,20,.32);
+
+  --glass-tint:        rgba(255,253,249,.55);
+  --glass-tint-light:  rgba(255,255,255,.42);
+  --glass-tint-gold:   rgba(201,143,47,.16);
+  --glass-tint-strong: rgba(250,247,241,.72);
+  --glass-border: rgba(40,30,15,.12);
+  --glass-edge:
+    0 10px 30px -12px rgba(60,45,20,.30),
+    inset 0 1px 0 rgba(255,255,255,.85),
+    inset 0 -1px 1px rgba(60,45,20,.10);
+  --glass-edge-gold:
+    0 12px 36px -12px rgba(60,45,20,.32),
+    inset 0 1px 0 rgba(255,255,255,.9),
+    inset 0 0 0 1px rgba(201,143,47,.30),
+    inset 0 -2px 4px rgba(201,143,47,.20);
+  --glass-sheen: linear-gradient(135deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,.12) 24%, transparent 48%);
+}
