@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
 import { Route, MessageSquare, Search, Sparkles, Wrench, Combine } from 'lucide-react';
 import { PageHero, Section, SectionHead, Card, CardGrid, Timeline, CTABand } from '@/components/page/kit';
-import { Reveal } from '@/components/motion/primitives';
 import { PragyaConsole } from '@/components/pragya/PragyaConsole';
+import { buildMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: 'Meet Pragya — Your AI Account Manager',
   description: 'Pragya is HireBuddha’s account manager and your first AI Employee — backed by CORTEX memory and the Meta Agent. The same intelligence you talk to here is the one that runs your business tomorrow.',
-};
+  path: '/pragya',
+});
 
 const HERE = [
   { icon: Route, title: 'Route', body: '“Take me to pricing.” Pragya navigates you there instantly — no menu hunting.' },
@@ -19,11 +19,11 @@ const HERE = [
 ];
 
 const JOB = [
-  { title: 'Onboards your business', body: 'Ingests your knowledge base — files, SharePoint, Notion, Drive, and databases — so she understands how you actually work.' },
-  { title: 'Connects your software', body: 'Links your CRM, ERP, accounting, HRMS, and invoicing so the workforce can act inside the systems you already run.' },
+  { title: 'Onboards your business', body: 'Ingests your knowledge base — documents, Google Drive files and your website — so she understands how you actually work.' },
+  { title: 'Connects your software', body: 'Connects your mail, WhatsApp, social accounts, HubSpot and GitHub, so the workforce can act inside the systems you already run.' },
   { title: 'Builds your workforce', body: 'Designs or commissions the AI Employees you need via the Meta Agent — then hands you the controls.' },
   { title: 'Assigns and monitors', body: 'Dispatches the work, watches every run, and surfaces Human-in-the-Loop approvals when you’ve asked for them.' },
-  { title: 'Reports back', body: 'Keeps you informed by Meetings, phone, WhatsApp, Slack, or Teams — exactly like a human chief of staff.' },
+  { title: 'Reports back', body: 'Keeps you informed by meetings, phone, WhatsApp or e-mail — exactly like a human chief of staff.' },
 ];
 
 export default function PragyaPage() {

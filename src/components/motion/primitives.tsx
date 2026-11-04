@@ -12,17 +12,30 @@ const EASE = [0.16, 1, 0.3, 1] as const;
    Fade + rise on enter. Enhances an already-laid-out element (no visibility
    gating), and renders the final state immediately under reduced motion. */
 export function Reveal({
-  children, as = 'div', y = 26, delay = 0, duration = 0.7, amount = 0.3, className, style, ...rest
+  children, as = 'div', y = 26, delay = 0, duration = 0.7, amount = 0.3, immediate = false, className, style, ...rest
 }: {
   children: React.ReactNode; as?: keyof typeof motion; y?: number; delay?: number;
   duration?: number; amount?: number; className?: string; style?: React.CSSProperties;
+  /** Above-the-fold content: a CSS entrance that runs from the server HTML,
+   *  so it is visible before (and without) JavaScript. */
+  immediate?: boolean;
 } & Record<`data-${string}`, unknown>) {
   const reduce = useReducedMotion();
+  if (immediate) {
+    const Plain = as as React.ElementType;
+    return (
+      <Plain className={`reveal-now ${className ?? ''}`} {...rest}
+        style={{ ...style, ['--reveal-y' as string]: `${y}px`, ['--reveal-delay' as string]: `${delay}s`, ['--reveal-duration' as string]: `${duration}s` }}>
+        {children}
+      </Plain>
+    );
+  }
   const Comp = motion[as] as typeof motion.div;
   return (
     <Comp
       className={className}
       style={style}
+      data-reveal
       {...rest}
       initial={reduce ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -39,14 +52,33 @@ export function Reveal({
    rising into place with a stagger — the site's signature headline reveal.
    `highlight` indices render in brand gold (emphasis by color, not gradient). */
 export function KineticWords({
-  text, as = 'span', className, delay = 0, stagger = 0.055, duration = 0.85, highlight = [], amount = 0.5,
+  text, as = 'span', className, delay = 0, stagger = 0.055, duration = 0.85, highlight = [], amount = 0.5, immediate = false,
 }: {
   text: string; as?: 'span' | 'h1' | 'h2' | 'h3' | 'p'; className?: string;
   delay?: number; stagger?: number; duration?: number; highlight?: number[]; amount?: number;
+  /** Hero headlines: the same rise, driven by CSS from the server HTML, so
+   *  the words are on screen before (and without) JavaScript. */
+  immediate?: boolean;
 }) {
   const reduce = useReducedMotion();
   const Comp = motion[as] as typeof motion.span;
   const words = text.split(' ');
+
+  if (immediate) {
+    const Plain = as as React.ElementType;
+    return (
+      <Plain className={className} aria-label={text}>
+        {words.map((w, i) => (
+          <span key={i} aria-hidden className="kw-mask">
+            <span className={`kw-rise ${highlight.includes(i) ? 'u-gold' : ''}`}
+              style={{ ['--kw-delay' as string]: `${delay + i * stagger}s`, ['--kw-duration' as string]: `${duration}s` }}>
+              {w}{i < words.length - 1 ? ' ' : ''}
+            </span>
+          </span>
+        ))}
+      </Plain>
+    );
+  }
 
   if (reduce) {
     const Plain = as as React.ElementType;
@@ -68,7 +100,7 @@ export function KineticWords({
     <Comp className={className} variants={parent} initial="hidden" whileInView="show" viewport={{ once: true, amount }} aria-label={text}>
       {words.map((w, i) => (
         <span key={i} aria-hidden style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'top', paddingBottom: '0.14em', marginBottom: '-0.14em' }}>
-          <motion.span variants={child} style={{ display: 'inline-block', willChange: 'transform' }} className={highlight.includes(i) ? 'u-gold' : undefined}>
+          <motion.span variants={child} data-reveal style={{ display: 'inline-block', willChange: 'transform' }} className={highlight.includes(i) ? 'u-gold' : undefined}>
             {w}{i < words.length - 1 ? ' ' : ''}
           </motion.span>
         </span>
@@ -93,7 +125,7 @@ export function StaggerItem({ children, className, y = 22, style, ...rest }: {
 } & Record<`data-${string}`, unknown>) {
   const reduce = useReducedMotion();
   return (
-    <motion.div className={className} style={style} {...rest}
+    <motion.div className={className} style={style} data-reveal {...rest}
       variants={reduce ? { hidden: {}, show: {} } : { hidden: { opacity: 0, y }, show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } } }}>
       {children}
     </motion.div>
@@ -144,7 +176,9 @@ export function Parallax({ children, distance = 80, className, style }: {
 }
 
 /* ------------------------------------------------------------------- CountUp --
-   Animates to `value` on first view, writing straight to the DOM (no rerenders). */
+   The server HTML carries the final value (crawlers, no-JS and print see the
+   real number); on first view it counts up from 0, writing straight to the
+   DOM (no rerenders). */
 export function CountUp({ value, duration = 1.8, decimals = 0, prefix = '', suffix = '', className }: {
   value: number; duration?: number; decimals?: number; prefix?: string; suffix?: string; className?: string;
 }) {
@@ -155,7 +189,7 @@ export function CountUp({ value, duration = 1.8, decimals = 0, prefix = '', suff
   useEffect(() => {
     const fmt = (v: number) => prefix + v.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
     if (!ref.current) return;
-    if (reduce || !inView) { if (inView && ref.current) ref.current.textContent = fmt(value); return; }
+    if (reduce || !inView) return;
     const controls = animate(0, value, {
       duration, ease: EASE,
       onUpdate: (v) => { if (ref.current) ref.current.textContent = fmt(v); },
@@ -163,7 +197,8 @@ export function CountUp({ value, duration = 1.8, decimals = 0, prefix = '', suff
     return () => controls.stop();
   }, [inView, value, duration, decimals, prefix, suffix, reduce]);
 
-  return <span ref={ref} className={className}>{prefix}0{suffix}</span>;
+  const final = prefix + value.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
+  return <span ref={ref} className={className}>{final}</span>;
 }
 
 /* ---------------------------------------------------------------------- Tilt --

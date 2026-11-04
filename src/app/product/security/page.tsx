@@ -1,12 +1,20 @@
-import type { Metadata } from 'next';
-import { KeyRound, Lock, Users, Eye, Gauge, ScrollText, ShieldCheck } from 'lucide-react';
+import { KeyRound, Lock, Users, Eye, Gauge, ScrollText, ShieldCheck, Server, Bug, ListChecks } from 'lucide-react';
 import { PageHero, Section, SectionHead, Card, CardGrid, Split, PillRow, CTABand } from '@/components/page/kit';
 import { SECURITY_BADGES } from '@/lib/site';
+import { company } from '@/config/company';
+import { buildMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Security & Governance — Enterprise-Grade by Design',
-  description: 'AES-256-GCM encryption, stateless JWT auth, multi-tenant isolation, Human-in-the-Loop governance, credit circuit breakers, and full audit trails. Built to survive a security review.',
-};
+export const metadata = buildMetadata({
+  title: 'Security & Governance',
+  description: 'Encryption, tenant isolation, human approvals and audit trails, hosted in Azure Central India. How to report a vulnerability to HireBuddha.',
+  path: '/product/security',
+});
+
+const TRUST = [
+  { icon: Server, title: 'Hosted in India', body: 'HireBuddha’s databases and files are hosted in Microsoft Azure’s Central India region, encrypted, with each business’s data kept apart from every other.', href: '/subprocessors', cta: 'See our sub-processors' },
+  { icon: Bug, title: 'Report a vulnerability', body: `Found a security issue? Write to ${company.email.contact} with the details and steps to reproduce. We acknowledge reports within 72 hours. Please don’t test against other customers’ data.`, href: `mailto:${company.email.contact}?subject=Security%20report`, cta: 'Report an issue' },
+  { icon: ListChecks, title: 'Your data, your rules', body: 'How we collect, keep and delete data, and how to disconnect an account or close your workspace, is set out in our privacy policy and data deletion page.', href: '/privacy', cta: 'Read the privacy policy' },
+];
 
 const CARDS = [
   { icon: KeyRound, title: 'Encryption — Key Vault', body: 'AES-256-GCM with nonce-prepended ciphertext. The master key is stored outside the database. Secrets are never logged or exposed in plaintext.' },
@@ -47,6 +55,7 @@ export default function SecurityPage() {
         title="Enterprise-grade security. By design, not afterthought."
         lead="Encryption, isolation, authentication, and governance built into the core — so your autonomous workforce is auditable, gated, and yours to control. This page is written to survive a security review."
         ctaPrimary="Talk to Sales"
+        ctaPrimaryHref="/contact"
         ctaPragya="Talk to Pragya"
         visual="ring"
       />
@@ -73,10 +82,18 @@ export default function SecurityPage() {
         </CardGrid>
       </Section>
 
+      <Section>
+        <SectionHead title="Where your data lives. Who to tell." lead="Hosting, sub-processors, and a direct line for security researchers." />
+        <CardGrid cols={3}>
+          {TRUST.map((c) => <Card key={c.title} icon={<c.icon size={22} strokeWidth={1.6} />} title={c.title} body={c.body} href={c.href} cta={c.cta} />)}
+        </CardGrid>
+      </Section>
+
       <CTABand
         title="Autonomy you can prove and control."
         sub="You decide which brains touch your data — and you can prove what every one of them did. Talk to us about your security requirements."
         primary="Talk to Sales"
+        primaryHref="/contact"
       />
     </>
   );

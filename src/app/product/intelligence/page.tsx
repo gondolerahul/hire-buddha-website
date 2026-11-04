@@ -1,13 +1,14 @@
-import type { Metadata } from 'next';
 import { Gauge, MessageSquare, Database, BrainCircuit, CircuitBoard, SlidersHorizontal, Combine } from 'lucide-react';
 import { PageHero, Section, SectionHead, Card, CardGrid, Timeline, CTABand } from '@/components/page/kit';
 import { ModelRouter, AgentLoopRing } from '@/components/product/Intelligence';
 import { Reveal } from '@/components/motion/primitives';
+import { buildMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: 'Intelligence, Memory & the Learning System',
   description: 'A multi-model Intelligence Engine behind a smart router, a 4-tier memory architecture with CORTEX, and a Learning System that makes Week 12 beat Week 1 — automatically.',
-};
+  path: '/product/intelligence',
+});
 
 const MEMORY = [
   { icon: Gauge, kicker: 'Tier 1', title: 'Working Memory', body: 'Today’s scratchpad — inputs, loop metrics, step calculations for the current task. Your desk, cluttered with today’s work.' },
@@ -65,11 +66,16 @@ export default function IntelligencePage() {
       </Section>
 
       <Section>
-        <SectionHead eyebrow="The Learning System — the moat" title="The slowest version of your workforce is the one you run today." lead="Most AI is stateless — it forgets and never improves. HireBuddha does the opposite: every run leaves the system smarter." />
+        <SectionHead eyebrow="The Learning System — the moat" title="The slowest version of your workforce is the one you run today." lead="Most AI is stateless — it forgets and never improves. HireBuddha does the opposite: every run leaves your workforce better at your business. That learning stays inside your workspace." />
         <Timeline items={WEEKS} />
         <Reveal y={16}>
           <p style={{ marginTop: 36, padding: '26px 30px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border-gold)', background: 'var(--accent-quiet)', color: 'var(--fg)', fontSize: 'var(--text-xl)', lineHeight: 1.4, letterSpacing: 'var(--track-tight)', fontFamily: 'var(--font-display)', maxWidth: '40ch' }}>
             Your competitors are still onboarding hires. You’re running a self-optimizing machine. The gap doesn’t close — it widens.
+          </p>
+        </Reveal>
+        <Reveal y={16}>
+          <p style={{ marginTop: 18, color: 'var(--fg-muted)', fontSize: 'var(--text-sm)', lineHeight: 1.7, maxWidth: '78ch' }}>
+            <b style={{ color: 'var(--fg)' }}>Your data trains nothing but your own workforce.</b> The Learning System runs per business. It never uses one business’s data to improve another business’s AI employees, and no customer data or connected-account data (your mail, messages, posts or files) is used to train or fine-tune BabyBuddha or any other shared model.
           </p>
         </Reveal>
       </Section>
@@ -83,7 +89,7 @@ export default function IntelligencePage() {
 
       <CTABand
         title="Deploy intelligence that compounds."
-        sub="Start with $5 in free daily credits. Watch Week 12 beat Week 1 — with no human intervention."
+        sub="Start with ₹500 in free daily credits. Watch Week 12 beat Week 1 — with no human intervention."
         primary="Start Free"
       />
     </>

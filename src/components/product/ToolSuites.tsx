@@ -12,7 +12,7 @@ const SUITES: Suite[] = [
   { icon: FileText, name: 'Document & Data Factory', blurb: 'Generate real business documents.', tools: ['Excel', 'PDF', 'Word', 'PowerPoint', 'File Writer'] },
   { icon: Sparkles, name: 'Creative Studio', blurb: 'Multi-provider, router-brokered generation.', tools: ['Image · Nano Banana', 'Image · ChatGPT', 'Image · Kling', 'Video · Veo', 'Video · SeeDance', 'Voice · OmniBuddha', 'Voice · Gemini Live', 'Voice · ChatGPT Realtime'] },
   { icon: Cpu, name: 'Precision & Dev', blurb: 'Exact math and sandboxed execution.', tools: ['Calculator', 'Sandbox Code Executor', 'Terminal'] },
-  { icon: Plug, name: 'Enterprise Integration', blurb: 'Plug into the systems you already run.', tools: ['Bank Feed', 'Global Payouts', 'Tax Matrix', 'E-Signature', 'Identity Verify', 'Slack / Teams', 'Jira / Linear', 'Apollo / Clearbit', 'Calendar', 'HRIS', 'Inventory', 'Scheduler'] },
+  { icon: Plug, name: 'Connections', blurb: 'Work inside the accounts you already run.', tools: ['Gmail', 'Outlook', 'Google Drive', 'WhatsApp', 'Facebook Pages', 'Instagram', 'LinkedIn Pages', 'X', 'YouTube', 'Google Ads', 'HubSpot', 'GitHub', 'MCP servers', 'Scheduler'] },
 ];
 
 export function ToolSuites() {

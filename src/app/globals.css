@@ -208,9 +208,6 @@ h4 { font-size: var(--text-xl); }
   mask-composite: exclude;
   transition: opacity .5s var(--ease-out);
 }
-[data-theme="light"] [data-spot]::before {
-  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(201,143,47,.10), rgba(201,143,47,.03) 45%, transparent 68%);
-}
 
 /* ============================================================================
    ANIMATED UNDERLINE  (nav / footer / inline links)
@@ -244,7 +241,6 @@ h4 { font-size: var(--text-xl); }
 .lead { font-size: var(--text-lg); line-height: var(--lh-relaxed); color: var(--fg-muted); max-width: 62ch; }
 
 /* Ambient depth layer — additive gold reads too loud on the light theme */
-[data-theme="light"] .ambientLayer { opacity: .35; }
 
 /* Grain overlay — adds a faint analog texture over the warm black */
 .u-grain::after {
@@ -274,6 +270,9 @@ h4 { font-size: var(--text-xl); }
    ============================================================================ */
 @media (pointer: fine) {
   html.has-cursor, html.has-cursor * { cursor: none !important; }
+  /* Text fields keep the native I-beam so people can see where they type. */
+  html.has-cursor input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+  html.has-cursor textarea, html.has-cursor [contenteditable="true"] { cursor: text !important; }
 }
 
 /* ============================================================================
@@ -288,3 +287,20 @@ h4 { font-size: var(--text-xl); }
   }
   html.has-cursor, html.has-cursor * { cursor: auto !important; }
 }
+
+/* ============================================================================
+   ENTRANCES THAT DON'T WAIT FOR JAVASCRIPT
+   Hero copy animates in with CSS from the server HTML, so it is visible before
+   hydration and with JavaScript off. Scroll reveals (framer-motion, marked
+   data-reveal) are forced visible when there is no JS, and in print.
+   ============================================================================ */
+.kw-mask { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+.kw-rise { display: inline-block; animation: kw-rise var(--kw-duration, .85s) cubic-bezier(.16,1,.3,1) var(--kw-delay, 0s) both; }
+@keyframes kw-rise { from { transform: translateY(115%); } }
+.reveal-now { animation: reveal-now var(--reveal-duration, .7s) cubic-bezier(.16,1,.3,1) var(--reveal-delay, 0s) both; }
+@keyframes reveal-now { from { opacity: 0; transform: translateY(var(--reveal-y, 18px)); } }
+@media (prefers-reduced-motion: reduce) { .kw-rise, .reveal-now { animation: none; } }
+@media print { [data-reveal] { opacity: 1 !important; transform: none !important; } }
+
+/* <main> takes focus from the skip link; it needs no visible ring. */
+main:focus { outline: none; }

@@ -4555,4 +4555,3 @@ three/build/three.module.js:
    * SPDX-License-Identifier: MIT
    *)
 */
-//# sourceMappingURL=fluid-buddha.global.js.map

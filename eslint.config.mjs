@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored, minified SDK bundle and other static files.
+    "public/**",
     "buddha-cognitive-lab-design-system/**",
     "scratch/**",
     "backups/**",

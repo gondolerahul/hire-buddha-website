@@ -8,11 +8,11 @@ import s from './Intelligence.module.css';
 /* ----------------------------------------------------------- ModelRouter ---- */
 const MODELS = ['BabyBuddha', 'Claude Opus', 'ChatGPT', 'Gemini', 'GLM', 'Qwen', 'Mistral'];
 const SCENARIOS = [
-  { task: 'Classify an inbound email', model: 'BabyBuddha', mode: 'fast mode', cost: '$0.0003' },
-  { task: 'Extract line items from a PDF', model: 'Gemini', mode: 'vision', cost: '$0.0011' },
-  { task: 'Plan a 9-step outreach', model: 'BabyBuddha', mode: 'extended reasoning', cost: '$0.0041' },
-  { task: 'Redline a vendor contract', model: 'Claude Opus', mode: 'frontier', cost: '$0.062' },
-  { task: 'Summarize a call transcript', model: 'Qwen', mode: 'long-context', cost: '$0.0019' },
+  { task: 'Classify an inbound email', model: 'BabyBuddha', mode: 'fast mode', cost: '₹0.03' },
+  { task: 'Extract line items from a PDF', model: 'Gemini', mode: 'vision', cost: '₹0.09' },
+  { task: 'Plan a 9-step outreach', model: 'BabyBuddha', mode: 'extended reasoning', cost: '₹0.35' },
+  { task: 'Redline a vendor contract', model: 'Claude Opus', mode: 'frontier', cost: '₹5.27' },
+  { task: 'Summarize a call transcript', model: 'Qwen', mode: 'long-context', cost: '₹0.16' },
 ];
 
 export function ModelRouter() {

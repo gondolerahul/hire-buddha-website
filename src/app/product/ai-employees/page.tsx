@@ -1,13 +1,14 @@
-import type { Metadata } from 'next';
 import { Fingerprint, SlidersHorizontal, GitBranch, Plug, Database, BrainCircuit, ShieldCheck, Braces, Repeat, ListOrdered, GitFork } from 'lucide-react';
 import { PageHero, Section, SectionHead, Card, CardGrid, Split, Timeline, CTABand } from '@/components/page/kit';
 import { TierStack } from '@/components/product/TierStack';
 import { Reveal } from '@/components/motion/primitives';
+import { buildMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: 'AI Employees — 5-Tier Hierarchy & the Meta Agent',
   description: 'Not chatbots — cognitive workers. A five-tier hierarchy from atomic tool calls to a self-running company. Design AI Employees in minutes, or let the Meta Agent build them from a goal.',
-};
+  path: '/product/ai-employees',
+});
 
 const META_STEPS = [
   { title: 'Understand', body: 'Decomposes your goal into required capabilities, data, channels, and constraints.' },

@@ -91,7 +91,7 @@ export const ARC_DETAIL: Record<string, ArcDetail> = {
     handoff: 'Keeps every other arc resourced and compliant.',
   },
   evolve: {
-    intro: 'Evolve is the loop turning back on itself. It learns from every run across the whole company and tunes Sheel — so the workforce you operate next quarter is measurably better than the one you operate today.',
+    intro: 'Evolve is the loop turning back on itself. It learns from every run across your company, inside your own workspace, and tunes Sheel — so the workforce you operate next quarter is measurably better than the one you operate today.',
     capabilities: [
       { title: 'Cross-process analysis', body: 'Harvests reflections, KPIs, critic verdicts, and human feedback from across the platform.' },
       { title: 'Charter self-optimization', body: 'The Self-Optimizing Intelligence Engine rewrites agent charters from KPI evidence.' },

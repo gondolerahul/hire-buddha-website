@@ -2,14 +2,17 @@
 
 import { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
+import { useMediaQuery } from '@/lib/useMediaQuery';
 
 // A bespoke two-part cursor: a precise gold dot that tracks the pointer 1:1 and
 // a softer trailing ring on spring physics that swells over interactive targets.
 // Pointer position is held in motion values (never React state) so the page does
-// not re-render on every mouse move. Native cursor is hidden via .has-cursor.
+// not re-render on every mouse move. Native cursor is hidden via .has-cursor,
+// except over text fields, which keep the I-beam.
 export function Cursor() {
   const reduce = useReducedMotion();
-  const [enabled, setEnabled] = useState(false);
+  const fine = useMediaQuery('(pointer: fine)');
+  const enabled = fine && !reduce;
   const [variant, setVariant] = useState<'default' | 'hover' | 'view'>('default');
   const [label, setLabel] = useState('');
 
@@ -19,11 +22,7 @@ export function Cursor() {
   const ringY = useSpring(y, { stiffness: 380, damping: 34, mass: 0.6 });
 
   useEffect(() => {
-    if (reduce) return;
-    const fine = window.matchMedia('(pointer: fine)').matches;
-    if (!fine) return;
-
-    setEnabled(true);
+    if (!enabled) return;
     document.documentElement.classList.add('has-cursor');
 
     const onMove = (e: PointerEvent) => { x.set(e.clientX); y.set(e.clientY); };
@@ -42,7 +41,7 @@ export function Cursor() {
       window.removeEventListener('pointerover', onOver);
       document.documentElement.classList.remove('has-cursor');
     };
-  }, [reduce, x, y]);
+  }, [enabled, x, y]);
 
   if (!enabled) return null;
 

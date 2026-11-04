@@ -18,12 +18,15 @@
 .logoText { font-family: var(--font-logo); font-weight: 700; font-size: 19px; letter-spacing: .01em; color: var(--fg); }
 .logoText b { color: var(--accent); font-weight: 700; }
 
-.nav { display: flex; align-items: center; gap: 4px; }
-@media (max-width: 1023px) { .nav { display: none; } }
+/* The full nav needs ~1200px; below that the burger takes over, so the items
+   never wrap onto two or three lines. */
+.nav { display: flex; align-items: center; gap: 2px; }
+@media (max-width: 1199px) { .nav { display: none; } }
+.group { display: contents; }
 
 .navItem {
   position: relative; display: inline-flex; align-items: center; gap: 6px;
-  padding: 10px 14px; border-radius: var(--r-pill);
+  padding: 10px 13px; border-radius: var(--r-pill); white-space: nowrap;
   font-size: var(--text-sm); font-weight: 500; color: var(--fg-muted);
   transition: color .25s var(--ease-out), background-color .25s var(--ease-out);
 }
@@ -40,15 +43,19 @@
 .navItem:hover::after, .navItem[data-open='true']::after { transform: scaleX(1); transform-origin: left center; }
 
 .actions { display: flex; align-items: center; gap: 10px; }
-.desktopActions { display: flex; align-items: center; gap: 10px; }
-@media (max-width: 1023px) { .desktopActions { display: none; } }
+.desktopActions { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+@media (max-width: 1199px) { .desktopActions { display: none; } }
+/* Pragya is one click away in every hero and CTA; the header drops her first. */
+@media (max-width: 1379px) { .pragyaBtn { display: none; } }
+.signIn { font-size: var(--text-sm); font-weight: 500; color: var(--fg-muted); padding: 10px 8px; }
+.signIn:hover { color: var(--accent); }
 
 .burger {
   display: none; width: 44px; height: 44px; border-radius: var(--r-md);
   border: 1px solid var(--border-strong); color: var(--fg);
   align-items: center; justify-content: center;
 }
-@media (max-width: 1023px) { .burger { display: inline-flex; } }
+@media (max-width: 1199px) { .burger { display: inline-flex; } }
 
 /* ---------------------------------------------------------------- mega panel */
 .panelWrap { position: absolute; left: 0; right: 0; top: 100%; display: flex; justify-content: center; pointer-events: none; }
@@ -93,14 +100,15 @@
 .arcRow { display: flex; align-items: center; gap: 10px; padding: 9px 11px; border-radius: var(--r-sm); color: var(--fg-muted); transition: background-color .2s, color .2s; }
 .arcRow:hover { background: rgba(255,255,255,.04); color: var(--fg); }
 .arcRow svg { color: var(--accent); }
-.arcNum { font-family: var(--font-mono); font-size: 10px; color: var(--fg-faint); width: 18px; }
+.arcNum { font-family: var(--font-mono); font-size: 10px; color: var(--fg-subtle); width: 18px; }
 
 /* ---------------------------------------------------------------- mobile */
 .mobile { position: fixed; inset: 0; z-index: var(--z-overlay); background: var(--ink-950); display: flex; flex-direction: column; }
 .mobileInner { flex: 1; overflow-y: auto; padding: 96px var(--gutter) 48px; display: flex; flex-direction: column; gap: 6px; }
 .mLink { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--border); font-family: var(--font-display); font-size: var(--text-2xl); color: var(--fg); }
 .mSub { display: flex; flex-wrap: wrap; gap: 8px; padding: 8px 0 18px; }
-.mChip { font-size: var(--text-sm); color: var(--fg-muted); padding: 7px 13px; border: 1px solid var(--border); border-radius: var(--r-pill); }
+.mIcp { display: block; padding: 12px 0 2px; font-family: var(--font-display); font-size: var(--text-lg); color: var(--fg); }
+.mChip { font-size: var(--text-sm); color: var(--fg-muted); padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--r-pill); }
 .mChip:hover { border-color: var(--border-gold); color: var(--accent); }
 .mActions { padding: 24px var(--gutter) calc(24px + env(safe-area-inset-bottom)); display: grid; gap: 10px; border-top: 1px solid var(--border); }
 .mClose { position: absolute; top: 18px; right: var(--gutter); width: 44px; height: 44px; border:1px solid var(--border-strong); border-radius: var(--r-md); color: var(--fg); display:grid; place-items:center; }

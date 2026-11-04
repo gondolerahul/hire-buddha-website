@@ -1,15 +1,16 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { PageHero, Section, SectionHead, CTABand } from '@/components/page/kit';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/primitives';
 import { ARCS } from '@/lib/site';
 import s from './solutions.module.css';
+import { buildMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: 'Sheel — One Unified Business Loop',
   description: 'Seven departments were seven silos with six seams. Sheel collapses them into one self-running loop of six continuous arcs — sharing one brain, one memory, one face. No silos. No seams.',
-};
+  path: '/solutions',
+});
 
 const MAP = [
   { before: 'Market research · BI · Monitoring · Lead intake', arc: ARCS[0] },
@@ -91,7 +92,7 @@ export default function SolutionsPage() {
       <CTABand
         title="Deploy into Sheel in 10 minutes."
         sub="Start with one arc or run all six. Pragya maps your business to the loop and the Meta Agent builds what’s missing."
-        primary="Get Started Free"
+        primary="Start Free"
       />
     </>
   );

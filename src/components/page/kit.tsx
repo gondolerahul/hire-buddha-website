@@ -9,11 +9,12 @@ import { HeroScene } from '@/components/visual/HeroScene';
 import type { SceneName } from '@/components/visual/heroScenes';
 import { Reveal, KineticWords, Stagger, StaggerItem, Magnetic, Parallax, CountUp, ScrollCue } from '@/components/motion/primitives';
 import { talkToPragya } from '@/lib/pragya';
+import { SIGNUP_URL } from '@/config/company';
 import s from './kit.module.css';
 
 /* ---------------------------------------------------------------- PageHero -- */
 export function PageHero({
-  eyebrow, title, lead, ctaPrimary, ctaPrimaryHref = '/contact', ctaPragya, align = 'left', visual = 'ring', scene,
+  eyebrow, title, lead, ctaPrimary, ctaPrimaryHref = SIGNUP_URL, ctaPragya, align = 'left', visual = 'ring', scene,
 }: {
   eyebrow: string; title: string; lead: string;
   ctaPrimary?: string; ctaPrimaryHref?: string; ctaPragya?: string;
@@ -47,18 +48,19 @@ export function PageHero({
       {(scene ? center : visual === 'center') && <div className={s.heroVeilCenter} aria-hidden />}
       <div className="u-container u-container--wide">
         <motion.div className={`${s.heroInner} ${center ? s.heroInnerCenter : ''}`} style={reduce ? undefined : { y: copyY, opacity: copyOpacity }}>
-          <Reveal y={14}><div className={`u-eyebrow ${s.heroEyebrow}`}>{eyebrow}</div></Reveal>
-          <h1 className={s.heroTitle}><KineticWords text={title} stagger={0.05} /></h1>
-          <Reveal y={18} delay={0.15}><p className={s.heroLead}>{lead}</p></Reveal>
+          {/* `immediate`: CSS entrances, visible from the server HTML. */}
+          <Reveal immediate y={14}><div className={`u-eyebrow ${s.heroEyebrow}`}>{eyebrow}</div></Reveal>
+          <h1 className={s.heroTitle}><KineticWords immediate text={title} stagger={0.05} /></h1>
+          <Reveal immediate y={18} delay={0.15}><p className={s.heroLead}>{lead}</p></Reveal>
           {(ctaPrimary || ctaPragya) && (
-            <Reveal y={18} delay={0.25}>
+            <Reveal immediate y={18} delay={0.25}>
               <div className={s.heroCtas}>
                 {ctaPrimary && (
                   <Magnetic strength={0.25}>
                     <Link href={ctaPrimaryHref} className="btn btn-gold btn-lg" data-cursor>{ctaPrimary} <ArrowUpRight size={17} /></Link>
                   </Magnetic>
                 )}
-                {ctaPragya && <button className="btn btn-ghost btn-lg" onClick={() => talkToPragya(ctaPragya === 'Talk to Pragya' ? undefined : ctaPragya)}>Talk to Pragya</button>}
+                {ctaPragya && <button type="button" className="btn btn-ghost btn-lg" onClick={() => talkToPragya(ctaPragya === 'Talk to Pragya' ? undefined : ctaPragya)}>Talk to Pragya</button>}
               </div>
             </Reveal>
           )}
@@ -126,7 +128,7 @@ export function Split({ reverse, title, body, items, visual }: {
     <div className={`${s.split} ${reverse ? s.rev : ''}`}>
       <Reveal y={24}>
         <div>
-          <h3 className={s.splitTitle}>{title}</h3>
+          <h2 className={s.splitTitle}>{title}</h2>
           <p className={s.splitBody}>{body}</p>
           {items && (
             <Stagger className={s.splitList} stagger={0.09} amount={0.4}>
@@ -149,7 +151,7 @@ export function Split({ reverse, title, body, items, visual }: {
 }
 
 /* --------------------------------------------------------------- StatGrid --- */
-/* Numbers roll up from zero on first view — "$532K" and "3,039%" style strings
+/* Numbers roll up from zero on first view — "₹50" and "99%" style strings
    are parsed into prefix / value / suffix so the odometer works everywhere. */
 function StatValue({ num }: { num: string }) {
   const m = num.match(/^([^0-9]*)([\d,]+(?:\.\d+)?)(.*)$/);
@@ -211,7 +213,7 @@ export function PillRow({ items, icon }: { items: string[]; icon?: React.ReactNo
 }
 
 /* --------------------------------------------------------------- CTA Band --- */
-export function CTABand({ title, sub, primary = 'Get Started Free', primaryHref = '/contact', highlight }: {
+export function CTABand({ title, sub, primary = 'Start Free', primaryHref = SIGNUP_URL, highlight }: {
   title: string; sub?: string; primary?: string; primaryHref?: string; highlight?: number[];
 }) {
   return (
@@ -223,12 +225,25 @@ export function CTABand({ title, sub, primary = 'Get Started Free', primaryHref 
         {sub && <Reveal y={16} delay={0.1}><p className={s.ctaSub}>{sub}</p></Reveal>}
         <Reveal y={16} delay={0.2}>
           <div className={s.ctaRow}>
-            <Magnetic strength={0.3}>
-              <Link href={primaryHref} className="btn btn-gold btn-lg" data-cursor>{primary} <ArrowUpRight size={17} /></Link>
-            </Magnetic>
-            <Magnetic strength={0.2}>
-              <button className="btn btn-ghost btn-lg" onClick={() => talkToPragya()}>Talk to Pragya</button>
-            </Magnetic>
+            {primary === 'Talk to Pragya' ? (
+              <>
+                <Magnetic strength={0.3}>
+                  <button type="button" className="btn btn-gold btn-lg" onClick={() => talkToPragya()}>Talk to Pragya</button>
+                </Magnetic>
+                <Magnetic strength={0.2}>
+                  <Link href={SIGNUP_URL} className="btn btn-ghost btn-lg" data-cursor>Start Free <ArrowUpRight size={17} /></Link>
+                </Magnetic>
+              </>
+            ) : (
+              <>
+                <Magnetic strength={0.3}>
+                  <Link href={primaryHref} className="btn btn-gold btn-lg" data-cursor>{primary} <ArrowUpRight size={17} /></Link>
+                </Magnetic>
+                <Magnetic strength={0.2}>
+                  <button type="button" className="btn btn-ghost btn-lg" onClick={() => talkToPragya()}>Talk to Pragya</button>
+                </Magnetic>
+              </>
+            )}
           </div>
         </Reveal>
       </div>

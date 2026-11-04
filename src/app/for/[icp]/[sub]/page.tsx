@@ -1,20 +1,20 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PageHero } from '@/components/page/kit';
 import { Blocks } from '@/components/persona/Blocks';
-import { SetICP } from '@/components/persona/SetICP';
 import { findICP, ICPS, ICP_SCENES } from '@/lib/icp';
+import { buildMetadata } from '@/lib/metadata';
 
 export function generateStaticParams() {
   return ICPS.flatMap((i) => i.subPages.map((sp) => ({ icp: i.slug, sub: sp.slug })));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ icp: string; sub: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ icp: string; sub: string }> }){
   const { icp, sub } = await params;
   const data = findICP(icp);
   const sp = data?.subPages.find((x) => x.slug === sub);
   if (!data || !sp) return {};
-  return { title: `${sp.title.replace(/[.]$/, '')} — ${data.nav}`, description: sp.desc };
+  // The short `desc` is written for cards; the lead makes a fuller description.
+  return buildMetadata({ title: `${sp.title.replace(/[.]$/, '')} · ${data.nav}`, description: `${sp.desc} ${sp.lead}`, path: `/for/${data.slug}/${sp.slug}` });
 }
 
 export default async function ICPSubPage({ params }: { params: Promise<{ icp: string; sub: string }> }) {
@@ -25,7 +25,6 @@ export default async function ICPSubPage({ params }: { params: Promise<{ icp: st
 
   return (
     <>
-      <SetICP icp={data.icpSlug} />
       <PageHero
         scene={ICP_SCENES[data.slug]}
         eyebrow={sp.eyebrow}
@@ -36,7 +35,7 @@ export default async function ICPSubPage({ params }: { params: Promise<{ icp: st
         ctaPragya={data.pragyaCta}
         visual="ring"
       />
-      <Blocks items={sp.blocks} />
+      <Blocks items={sp.blocks} outline={sp.nav} />
     </>
   );
 }

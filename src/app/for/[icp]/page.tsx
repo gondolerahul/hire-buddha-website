@@ -1,19 +1,18 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PageHero, Section, SectionHead, Card, CardGrid, CTABand } from '@/components/page/kit';
 import { Blocks } from '@/components/persona/Blocks';
-import { SetICP } from '@/components/persona/SetICP';
 import { findICP, ICP_SLUGS, ICP_SCENES } from '@/lib/icp';
+import { buildMetadata } from '@/lib/metadata';
 
 export function generateStaticParams() {
   return ICP_SLUGS.map((icp) => ({ icp }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ icp: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ icp: string }> }){
   const { icp } = await params;
   const data = findICP(icp);
   if (!data) return {};
-  return { title: `${data.nav} — ${data.concept}`, description: data.lead };
+  return buildMetadata({ title: `${data.nav}: ${data.concept}`, description: data.lead, path: `/for/${data.slug}` });
 }
 
 export default async function ICPPage({ params }: { params: Promise<{ icp: string }> }) {
@@ -27,7 +26,6 @@ export default async function ICPPage({ params }: { params: Promise<{ icp: strin
 
   return (
     <>
-      <SetICP icp={data.icpSlug} />
       <PageHero
         scene={ICP_SCENES[data.slug]}
         eyebrow={data.eyebrow}

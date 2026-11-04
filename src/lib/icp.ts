@@ -1,4 +1,4 @@
-import type { ICPSlug } from '@/context/ICPContext';
+import { SIGNUP_URL } from '@/config/company';
 import type { SceneName } from '@/components/visual/heroScenes';
 
 /* Bespoke hero instrument per ICP family — motif matches each concept.
@@ -25,7 +25,7 @@ export type Block =
 export type SubPage = { slug: string; nav: string; title: string; desc: string; eyebrow: string; lead: string; blocks: Block[] };
 
 export type ICP = {
-  slug: string; icpSlug: ICPSlug; nav: string; name: string; concept: string;
+  slug: string; nav: string; name: string; concept: string;
   eyebrow: string; headline: string; lead: string;
   ctaPrimary: string; ctaPrimaryHref: string; pragyaCta: string;
   heroVisual: 'ring' | 'center';
@@ -34,11 +34,11 @@ export type ICP = {
 };
 
 const SOLO: ICP = {
-  slug: 'solopreneurs', icpSlug: 'solopreneurs', nav: 'For Solopreneurs', name: 'Solopreneurs', concept: 'The Army of One',
+  slug: 'solopreneurs', nav: 'For Solopreneurs', name: 'Solopreneurs', concept: 'The Army of One',
   eyebrow: 'For Solopreneurs · The Army of One',
   headline: 'You’re not alone anymore.',
   lead: 'You just don’t need anyone else. Design an AI team that runs your business while you sleep — for less than the cost of your morning coffee.',
-  ctaPrimary: 'Meet Your Team — Free', ctaPrimaryHref: '/contact', pragyaCta: 'Tell Pragya about your day',
+  ctaPrimary: 'Meet Your Team — Free', ctaPrimaryHref: SIGNUP_URL, pragyaCta: 'Tell Pragya about your day',
   heroVisual: 'center',
   blocks: [
     { type: 'prose', eyebrow: 'We see you', paras: [
@@ -63,7 +63,7 @@ const SOLO: ICP = {
       { kicker: 'Treasury Controller', title: 'Raj', body: 'Precise, calm, relentless on deadlines. Today he reconciled your books and collected a late payment.', href: '/for/solopreneurs/team', cta: 'Meet the team' },
       { kicker: 'Care Orchestrator', title: 'Maya', body: 'Empathetic, fast, patient. Today she resolved 3 tickets in under 60 seconds each — and remembers every customer.', href: '/for/solopreneurs/team', cta: 'Meet the team' },
     ] },
-    { type: 'cta', title: 'You built this. You deserve this.', sub: 'Let your business run the way it should — with you steering, and your AI workforce rowing. Your team is waiting.', primary: 'Get Started Free' },
+    { type: 'cta', title: 'You built this. You deserve this.', sub: 'Let your business run the way it should — with you steering, and your AI workforce rowing. Your team is waiting.', primary: 'Start Free' },
   ],
   subPages: [
     { slug: 'team', nav: 'Meet Your Team', title: 'Meet your team.', desc: 'Named AI Employees with personalities, specialties, and character.', eyebrow: 'For Solopreneurs · Meet Your Team',
@@ -75,15 +75,15 @@ const SOLO: ICP = {
           { kicker: 'Monday Briefing', title: 'The Strategy Analyst', body: 'No name, no personality — just a briefing every Monday at 7am: your KPIs, what improved, what declined, and exactly what to do next.' },
         ] },
         { type: 'pills', heading: 'And as you grow, more join', items: ['Contract Reviewer', 'Talent Scout', 'Fulfillment Manager'] },
-        { type: 'callout', text: 'Your team gets smarter every day. Week 1 they follow instructions. Week 12 they anticipate your needs — without you ever training them.' },
-        { type: 'cta', title: 'Assemble your team — free.', primary: 'Get Started Free' },
+        { type: 'callout', text: 'Your team gets better at your business every day. Week 1 they follow instructions. Week 12 they anticipate your needs — without you ever training them, and without your data ever leaving your workspace.' },
+        { type: 'cta', title: 'Assemble your team — free.', primary: 'Start Free' },
       ] },
     { slug: 'your-day', nav: 'Your Day', title: 'Your day, reimagined.', desc: 'An interactive before/after of your daily schedule.', eyebrow: 'For Solopreneurs · Your Day',
       lead: 'Here’s what changes when an AI team handles everything that isn’t the work.', blocks: [
         { type: 'tool', tool: 'day-schedule' },
         { type: 'stats', items: [
           { num: '~6 hrs', label: 'back in your day, every day' },
-          { num: '$2–5', label: 'what your team’s whole day costs', accent: '' },
+          { num: '₹200–400', label: 'what your team’s whole day costs', accent: '' },
           { num: '15 min', label: 'the only review you do' },
         ] },
         { type: 'cta', title: 'Get your hours back.', sub: 'You just got six hours back. What will you build?', primary: 'Start Free' },
@@ -100,21 +100,21 @@ const SOLO: ICP = {
           'By next week, CORTEX has learned your patterns and your team starts getting better — without you doing anything.',
           'By next month, you’ll wonder how you ever did this alone.',
         ] },
-        { type: 'cta', title: 'Start now — talk to Pragya.', primary: 'Get Started Free' },
+        { type: 'cta', title: 'Start now — talk to Pragya.', primary: 'Start Free' },
       ] },
   ],
 };
 
 const STARTUPS: ICP = {
-  slug: 'startups', icpSlug: 'startups', nav: 'For Startups', name: 'Startups & SMEs', concept: 'Your Unfair Advantage',
+  slug: 'startups', nav: 'For Startups', name: 'Startups & SMEs', concept: 'Your Unfair Advantage',
   eyebrow: 'For Startups · Your Unfair Advantage',
   headline: 'They have headcount. You have HireBuddha. You win.',
-  lead: 'Your competitor raised $20M and hired 80 people. You have a better weapon — an AI workforce that outperforms their entire org in 10 minutes, for pennies per task.',
-  ctaPrimary: 'Deploy Your Unfair Advantage', ctaPrimaryHref: '/contact', pragyaCta: 'Ask Pragya how to 10x',
+  lead: 'Your competitor raised ₹170 crore and hired 80 people. You have a better weapon — an AI workforce that outperforms their entire org in 10 minutes, for a few rupees per task.',
+  ctaPrimary: 'Deploy Your Unfair Advantage', ctaPrimaryHref: SIGNUP_URL, pragyaCta: 'Ask Pragya how to 10x',
   heroVisual: 'ring',
   blocks: [
     { type: 'cards', eyebrow: 'Size is not strength', heading: 'Your competitor’s team is their biggest weakness.', cols: 3, items: [
-      { title: '80 employees', body: '≈ $400K/month in payroll, a 90-day onboarding cycle for every hire, and a Slack with 200 channels where nothing gets decided.' },
+      { title: '80 employees', body: '≈ ₹3.4 crore a month in payroll, a 90-day onboarding cycle for every hire, and a Slack with 200 channels where nothing gets decided.' },
       { title: '15 SDRs → 750 calls', body: 'Your AI Prospector makes 5,000 in the same day — and learns from every one.' },
       { title: 'A Monday backlog of 300', body: 'Their team clears it by Wednesday. Your Care Orchestrator resolved 280 at 3am on Sunday.' },
     ] },
@@ -125,9 +125,9 @@ const STARTUPS: ICP = {
       { kicker: 'Night', title: 'While you sleep', body: 'A renewal deadline 14 days out was found and pre-filled. It pinged you for sign-off.', href: '/for/startups/day-in-the-life', cta: 'See the full day' },
     ] },
     { type: 'table', eyebrow: 'The economics of unfair', heading: 'Same customer. Same contract. 99% lower acquisition cost.', lead: 'Illustrative comparison.', columns: ['Metric', 'Traditional (hiring)', 'HireBuddha'], highlight: 2, rows: [
-      ['Cost to acquire one customer', '$2,400', '$3.50'],
+      ['Cost to acquire one customer', '₹2,00,000', '₹300'],
       ['Decision to execution', '90 days', '10 minutes'],
-      ['Scale from 1 to 10 reps', '6 months + $500K', '10 seconds + $0'],
+      ['Scale from 1 to 10 reps', '6 months + ₹4 crore', '10 seconds + ₹0'],
       ['Works 24/7', 'No', 'Yes'],
       ['Remembers every interaction', 'No — lost on attrition', 'Yes — CORTEX, permanent'],
       ['Improves without management', 'No', 'Yes — Learning System'],
@@ -137,7 +137,7 @@ const STARTUPS: ICP = {
       'Your competitors are still onboarding their Q2 hires. You’re on loop twelve of a self-optimizing machine that knows your market better than any analyst.',
     ] },
     { type: 'callout', text: 'The gap doesn’t close. It widens.' },
-    { type: 'cta', title: 'Your competitor just posted 5 job listings. You’re about to deploy 5 AI Employees. Who wins?', primary: 'Get Started Free' },
+    { type: 'cta', title: 'Your competitor just posted 5 job listings. You’re about to deploy 5 AI Employees. Who wins?', primary: 'Start Free' },
   ],
   subPages: [
     { slug: 'day-in-the-life', nav: 'Day in the Life', title: 'A day in an AI-native startup.', desc: 'An hour-by-hour walkthrough.', eyebrow: 'For Startups · Day in the Life',
@@ -146,7 +146,7 @@ const STARTUPS: ICP = {
           { num: '06:00', title: 'Before you wake', body: 'The Growth arc ran overnight enrichment: 500 companies researched, 480 passed ICP, 1,200 decision-makers found, personalized drafts queued.' },
           { num: '08:00', title: 'Your morning', body: 'The daily digest is in your inbox: 42 qualified leads, 3 deals advanced, 18 tickets resolved, cash-flow positive. One action: approve the Henderson proposal. It takes 8 seconds.' },
           { num: '09:00', title: 'Outbound blitz', body: '200 emails out, 50 LinkedIn requests, 30 live voice calls. By 10am, four callbacks — the Deal Closer qualifies two and books a demo.' },
-          { num: '12:00', title: 'Midday operations', body: 'Twelve tickets resolved while you build product. One needed a sandboxed debug session — wrong auth header, fixed in 3 minutes. A $4,200 invoice nudged and paid within the hour.' },
+          { num: '12:00', title: 'Midday operations', body: 'Twelve tickets resolved while you build product. One needed a sandboxed debug session — wrong auth header, fixed in 3 minutes. A ₹3.5 lakh invoice nudged and paid within the hour.' },
           { num: '15:00', title: 'Afternoon strategy', body: 'A 22-minute call with a warm lead is summarized; a custom proposal with their integration architecture auto-generates and routes to you for approval.' },
           { num: '18:00', title: 'Evening wind-down', body: 'A 4-minute KPI briefing: open rate down to 34%; the subject-line strategy is adjusted automatically. You review over dinner. No action needed.' },
           { num: '23:00', title: 'While you sleep', body: 'A license renewal 14 days out is found and pre-filled. Three applicants for your dev role are screened; one scores 0.92 and a voice interview is booked.' },
@@ -158,7 +158,7 @@ const STARTUPS: ICP = {
       lead: 'Against hiring, outsourcing, and point tools.', blocks: [
         { type: 'table', heading: 'vs. hiring humans', columns: ['Dimension', 'Hiring a team', 'HireBuddha'], highlight: 2, rows: [
           ['Time to operational', '90–120 days', '10 minutes'],
-          ['Monthly cost (5-person equivalent)', '$25K–$50K', '$200–$500'],
+          ['Monthly cost (5-person equivalent)', '₹21–42 lakh', '₹17,000–42,000'],
           ['Scales instantly', 'No — months per hire', 'Yes — clone in 10 seconds'],
           ['Works 24/7', 'No', 'Yes'],
           ['Context retention', 'Lost on attrition', 'Permanent (CORTEX)'],
@@ -170,17 +170,17 @@ const STARTUPS: ICP = {
           ['Customization', 'Generic playbooks', 'Your knowledge base, your rules'],
           ['Data security', 'Third-party risk', 'Your tenant, your encryption, your audit trail'],
           ['Scaling', 'Slow — contract negotiation', 'Instant — clone agents'],
-          ['Cost transparency', 'Retainers, hidden fees', 'Per-execution, micro-cent tracking'],
+          ['Cost transparency', 'Retainers, hidden fees', 'Per-execution, sub-paisa tracking'],
         ] },
         { type: 'table', heading: 'vs. point solutions', columns: ['Need', 'Point solution', 'HireBuddha'], highlight: 2, rows: [
           ['Outbound sales', 'Apollo + Outreach + SDR', 'Growth arc'],
           ['Customer support', 'Zendesk + Intercom + team', 'Engage arc'],
           ['Invoicing', 'QuickBooks + manual follow-up', 'Sustain arc'],
-          ['Contract review', 'Outside counsel ($300/hr)', 'Sustain arc'],
+          ['Contract review', 'Outside counsel (₹25,000/hr)', 'Sustain arc'],
           ['Recruiting', 'LinkedIn Recruiter + ATS + recruiter', 'Engage arc'],
-          ['Total monthly cost', '$5K–$15K tools + $30K+ staff', '$200–$500 all-in'],
+          ['Total monthly cost', '₹4–13 lakh tools + ₹25 lakh+ staff', '₹17,000–42,000 all-in'],
         ] },
-        { type: 'cta', title: 'Stop paying for 6 tools. Start with 1 platform.', primary: 'Get Started Free' },
+        { type: 'cta', title: 'Stop paying for 6 tools. Start with 1 platform.', primary: 'Start Free' },
       ] },
     { slug: 'launchpad', nav: 'Launchpad', title: 'Your AI workforce in an afternoon.', desc: 'Deploy your first three arcs in one sitting.', eyebrow: 'For Startups · Launchpad',
       lead: 'Three arcs. Three hours. Zero headcount.', blocks: [
@@ -195,13 +195,13 @@ const STARTUPS: ICP = {
           { num: 'Wk 3', title: 'Add compliance', body: 'Deploy contract review and licensing.' },
           { num: 'Wk 4', title: 'Full stack', body: 'Everything operational. The Learning System is generating compound insight.' },
         ] },
-        { type: 'cta', title: 'Launch your first arc — free.', primary: 'Get Started Free' },
+        { type: 'cta', title: 'Launch your first arc — free.', primary: 'Start Free' },
       ] },
   ],
 };
 
 const GROWING: ICP = {
-  slug: 'growing-companies', icpSlug: 'medium-enterprise', nav: 'For Growing Companies', name: 'Growing Companies', concept: 'The Ops System That Runs Itself',
+  slug: 'growing-companies', nav: 'For Growing Companies', name: 'Growing Companies', concept: 'The Ops System That Runs Itself',
   eyebrow: 'For Growing Companies · The Ops System That Runs Itself',
   headline: 'Your business has outgrown your team. It hasn’t outgrown us.',
   lead: 'You’re scaling revenue, but operations scale linearly — more people, more management, thinner margins. Sheel replaces departmental headcount with one autonomous loop. Not next quarter. Today.',
@@ -236,7 +236,7 @@ const GROWING: ICP = {
       { num: 'Week 8', title: 'Anticipates', body: 'CORTEX builds deep domain context. Agents pre-draft and flag anomalies before you ask.' },
       { num: 'Week 12', title: 'Self-optimizes', body: 'The engine tunes agent charters from cross-process KPIs. Your operational IQ climbs while headcount stays flat.' },
     ] },
-    { type: 'cta', title: 'Your operations are ready to scale — without the headcount.', primary: 'Get Started Free' },
+    { type: 'cta', title: 'Your operations are ready to scale — without the headcount.', primary: 'Start Free' },
   ],
   subPages: [
     { slug: 'ops-playbook', nav: 'Ops Playbook', title: 'The AI operations playbook.', desc: 'Which arcs to deploy first, in what order.', eyebrow: 'For Growing Companies · Ops Playbook',
@@ -252,7 +252,7 @@ const GROWING: ICP = {
           'Each arc runs in parallel with your existing departments — no rip-and-replace. A/B test AI against humans on the same tasks and let the numbers decide.',
           'Roles evolve from execution to supervision and strategy. The org chart doesn’t shrink so much as move up the value stack.',
         ] },
-        { type: 'cta', title: 'Start phase 1 with Pragya.', primary: 'Get Started Free' },
+        { type: 'cta', title: 'Start phase 1 with Pragya.', primary: 'Start Free' },
       ] },
     { slug: 'control', nav: 'Control & Governance', title: 'More control. Less overhead.', desc: 'The governance framework for ops leaders.', eyebrow: 'For Growing Companies · Control & Governance',
       lead: 'Every execution is governed, gated, and auditable. You control the budget, the boundaries, and the escalation path.', blocks: [
@@ -265,8 +265,8 @@ const GROWING: ICP = {
           { title: 'Suspension middleware', body: 'Instant API lockout at the infrastructure level.' },
         ] },
         { type: 'cards', heading: 'HITL in practice.', cols: 2, items: [
-          { title: 'Before a high-value email', body: 'Pause before sending to any prospect valued over $50K.' },
-          { title: 'Before a payout', body: 'Pause before executing any disbursement over $1,000.' },
+          { title: 'Before a high-value email', body: 'Pause before sending to any prospect valued over ₹40 lakh.' },
+          { title: 'Before a payout', body: 'Pause before executing any disbursement over ₹85,000.' },
           { title: 'Before a signature', body: 'Pause before routing any contract for e-signature.' },
           { title: 'On a sentiment drop', body: 'Pause when a customer sentiment score falls below 0.3.' },
         ] },
@@ -285,7 +285,7 @@ const GROWING: ICP = {
 };
 
 const ENTERPRISE: ICP = {
-  slug: 'enterprise', icpSlug: 'enterprise', nav: 'For Enterprise', name: 'Enterprise', concept: 'The Transformation Layer',
+  slug: 'enterprise', nav: 'For Enterprise', name: 'Enterprise', concept: 'The Transformation Layer',
   eyebrow: 'For Enterprise · The Transformation Layer',
   headline: 'Don’t rip and replace. Deploy and transform.',
   lead: 'HireBuddha deploys Sheel alongside your existing infrastructure. Start with a single arc, prove ROI in 90 days, expand at your pace, reverse at any point.',
@@ -303,7 +303,7 @@ const ENTERPRISE: ICP = {
       ['Year 4 — start over', 'Compounding from here'],
     ] },
     { type: 'cards', eyebrow: 'The third path', heading: 'Not big-bang. Not pilot purgatory.', cols: 3, items: [
-      { kicker: 'Path 1', title: 'Go big', body: 'Multi-year, $10M+ project. High risk, organizational disruption. If it fails, careers end.' },
+      { kicker: 'Path 1', title: 'Go big', body: 'Multi-year, ₹85 crore+ project. High risk, organizational disruption. If it fails, careers end.' },
       { kicker: 'Path 2', title: 'Go small', body: 'A pilot that becomes innovation theater. Never reaches production, never moves the bottom line.' },
       { kicker: 'Path 3', title: 'Deploy & expand', body: 'Start with one arc, deploy in a week, run it beside your team, measure the delta — then expand. Reversible at every step.' },
     ] },
@@ -311,17 +311,17 @@ const ENTERPRISE: ICP = {
       ['Encryption', 'AES-256-GCM. Keys and credentials encrypted at rest; master key stored outside the database.'],
       ['Authentication', 'Stateless JWT. 15-minute access tokens; 7-day HTTP-only refresh cookies.'],
       ['Multi-tenant isolation', '4-level hierarchy. Company-scoped queries on every operation. Full data segregation.'],
-      ['HITL governance', 'Configurable checkpoints per agent, action, and loop. Slack/Teams approval workflows.'],
+      ['HITL governance', 'Configurable checkpoints per agent, action, and loop. Every outbound message, post and ad change waits for a person to approve it.'],
       ['Credit circuit breakers', 'Automatic halt on budget breach. Per-step cost tracking.'],
       ['Audit trail', 'Every run traced: tokens, cost, latency, decisions. Exportable and queryable.'],
       ['Suspension controls', 'Instant API lockout via middleware. Infrastructure-level kill switch.'],
     ] },
     { type: 'pills', items: ['AES-256-GCM Encryption', 'JWT Authentication', 'Multi-Tenant Isolation', 'Human-in-the-Loop Governance', 'Credit Circuit Breakers', 'Full Audit Trail'] },
     { type: 'cards', eyebrow: 'The integration doctrine', heading: 'We don’t replace your stack. We orchestrate it.', lead: 'Your AI workforce doesn’t live beside your infrastructure. It lives inside it.', cols: 4, items: [
-      { kicker: 'CRM & Sales', title: 'Salesforce · HubSpot', body: 'API tools and webhooks.', href: '/for/enterprise/integrations', cta: 'See integrations' },
-      { kicker: 'Communication', title: 'Slack · Teams', body: 'Rich Communication Broker — also handles HITL approvals.', href: '/for/enterprise/integrations', cta: 'See integrations' },
-      { kicker: 'Finance', title: 'Stripe · Plaid · Wise', body: 'Payout rails and bank-feed sync.', href: '/for/enterprise/integrations', cta: 'See integrations' },
-      { kicker: 'Legal & HR', title: 'DocuSign · Gusto', body: 'E-signature and HRIS accessors.', href: '/for/enterprise/integrations', cta: 'See integrations' },
+      { kicker: 'Mail', title: 'Gmail · Outlook', body: 'Through the Gmail API and Microsoft Graph, or any mailbox over IMAP.', href: '/for/enterprise/integrations', cta: 'See integrations' },
+      { kicker: 'Customer channels', title: 'WhatsApp · Facebook · Instagram', body: 'Answer customers where they already talk to you.', href: '/for/enterprise/integrations', cta: 'See integrations' },
+      { kicker: 'CRM & engineering', title: 'HubSpot · GitHub', body: 'Contacts and deals; code, branches and pull requests.', href: '/for/enterprise/integrations', cta: 'See integrations' },
+      { kicker: 'Your own systems', title: 'MCP · custom tools', body: 'Bring an MCP server, or have the Meta Agent build a tool for your API.', href: '/for/enterprise/integrations', cta: 'See integrations' },
     ] },
     { type: 'timeline', eyebrow: '90 days', heading: 'From pilot to platform — without the risk.', items: [
       { num: 'Wk 1–2', title: 'Foundation', body: 'Deploy one arc — Customer Success recommended — under full HITL.' },
@@ -354,7 +354,7 @@ const ENTERPRISE: ICP = {
           { title: 'Multi-model engine', body: 'No agent calls a model SDK directly. It requests a capability and the Intelligent Router binds it — BabyBuddha plus Claude Opus, ChatGPT, Gemini, GLM, Qwen, and Mistral.' },
           { title: 'Model & data governance', body: 'Per-tenant allow-lists and data-residency filters decide which providers are eligible before scoring. Pin a model where required; full attribution and audit of every model that touched data.' },
           { title: 'Meta Agent & self-evolving code', body: 'Tool synthesis and self-healing run sandboxed, test-gated, versioned, and rollback-safe, with optional HITL on promotion. Production is never edited in place.' },
-          { title: 'The Learning System', body: 'Harvests reflections, KPIs, critic verdicts, router performance, and HITL feedback, then runs a per-tenant optimizer that tunes charters, routing, tools, and the schema.' },
+          { title: 'The Learning System', body: 'Harvests reflections, KPIs, critic verdicts, router performance, and HITL feedback, then runs a per-tenant optimizer that tunes charters, routing, tools, and the schema. Nothing crosses tenants, and no customer data trains BabyBuddha or any shared model.' },
         ] },
         { type: 'table', eyebrow: 'Security deep-dive', heading: 'Implementation, not adjectives.', columns: ['Control', 'Implementation'], rows: [
           ['Encryption', 'AES-256-GCM with nonce-prepended ciphertext; master key outside the DB.'],
@@ -366,23 +366,20 @@ const ENTERPRISE: ICP = {
         { type: 'cta', title: 'Send it to your skeptics.', sub: 'Schedule a technical deep-dive with our architecture team.', primary: 'Schedule a Review', primaryHref: '/contact' },
       ] },
     { slug: 'integrations', nav: 'Integrations', title: 'Connect to everything you already use.', desc: 'The full integration catalog.', eyebrow: 'For Enterprise · Integration Ecosystem',
-      lead: 'HireBuddha orchestrates your existing infrastructure through 20+ built-in integrations and a custom tool builder.', blocks: [
+      lead: 'HireBuddha works inside the accounts your business already runs on, and the Meta Agent builds a tool for anything else.', blocks: [
         { type: 'cards', heading: 'The integration catalog.', cols: 3, items: [
-          { kicker: 'Communication', title: 'Slack · Teams · Email', body: 'IMAP/SMTP, WhatsApp Business, and Twilio.' },
-          { kicker: 'CRM & Sales', title: 'Salesforce · HubSpot', body: 'Via API tools and webhooks.' },
-          { kicker: 'Engineering', title: 'Jira · Linear · GitHub', body: 'Helpdesk routing and the Terminal tool.' },
-          { kicker: 'Finance & Payments', title: 'Stripe · Plaid · Wise', body: 'Plus Yodlee, PayPal, and Razorpay.' },
-          { kicker: 'Legal & Compliance', title: 'DocuSign · Persona', body: 'Plus Dropbox Sign and Middesk.' },
-          { kicker: 'HR & People', title: 'Gusto · Rippling', body: 'Plus BambooHR via the HRIS accessor.' },
-          { kicker: 'Calendar', title: 'Google · Outlook', body: 'Via Microsoft Graph and the Calendar Matrix.' },
-          { kicker: 'Sales Intelligence', title: 'Apollo · Clearbit', body: 'Plus ZoomInfo for enrichment.' },
-          { kicker: 'Telephony', title: 'Twilio · Exotel', body: 'Plus Smartflo (Tata Tele).' },
-          { kicker: 'AI Models', title: 'BabyBuddha + fleet', body: 'Claude, ChatGPT, Gemini, GLM, Qwen, Mistral — allow-list governed.' },
-          { kicker: 'Realtime Voice', title: 'OmniBuddha + Live', body: 'Gemini Live and ChatGPT Realtime.' },
-          { kicker: 'Generative Media', title: 'Veo · Kling · Imagen', body: 'Image and video generation, router-brokered.' },
+          { kicker: 'Mail', title: 'Gmail · Outlook', body: 'Reads and answers mail, with replies held as drafts until a person approves them. Gmail API, Microsoft Graph, or any mailbox over IMAP and SMTP.' },
+          { kicker: 'Files', title: 'Google Drive', body: 'Opens only the files you choose, and saves the files your AI employees produce.' },
+          { kicker: 'Messaging', title: 'WhatsApp Business', body: 'Answers your customers within WhatsApp’s service window; approved templates go only to customers who opted in.' },
+          { kicker: 'Social', title: 'Facebook Pages · Instagram', body: 'Posts, comment replies and Messenger or Direct message answers, each approved by your team.' },
+          { kicker: 'Social', title: 'LinkedIn Pages · X', body: 'Publishes approved posts and shows how they perform.' },
+          { kicker: 'Video & ads', title: 'YouTube · Google Ads', body: 'Uploads approved videos and reports on campaigns; changes campaigns only after approval.' },
+          { kicker: 'CRM', title: 'HubSpot', body: 'Works with contacts and deals through your own HubSpot token.' },
+          { kicker: 'Engineering', title: 'GitHub', body: 'A GitHub App on the repositories you choose: reads code, pushes branches, opens pull requests.' },
+          { kicker: 'Your own tools', title: 'MCP servers', body: 'Connect your own MCP server and grant its tools to the AI employees you choose.' },
         ] },
         { type: 'prose', heading: 'Don’t see your system?', paras: [
-          'Tell Pragya the system you want to connect to and the Meta Agent synthesizes a brand-new tool — sandboxed, test-gated, versioned, and rollback-safe.',
+          'Tell Pragya the system you want to connect to and the Meta Agent builds a tool for it from its API — sandboxed, test-gated, versioned, and rollback-safe.',
           'Custom integrations are first-class. Your stack defines the platform, not the other way around.',
         ] },
         { type: 'cta', title: 'Map your stack with Pragya.', sub: 'She can generate an integration compatibility report for your full environment.', primary: 'Schedule a Review', primaryHref: '/contact' },

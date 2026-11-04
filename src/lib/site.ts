@@ -134,10 +134,22 @@ export const FOOTER_NAV: { heading: string; links: NavLink[] }[] = [
     links: [
       { label: 'About', href: '/about' },
       { label: 'Contact', href: '/contact' },
+      { label: 'Security', href: '/product/security' },
       { label: 'Privacy', href: '/privacy' },
       { label: 'Terms', href: '/terms' },
     ],
   },
+];
+
+// Shown on every page (footer), as the provider reviews and Razorpay require.
+export const LEGAL_NAV: NavLink[] = [
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'Terms of Service', href: '/terms' },
+  { label: 'Data deletion', href: '/data-deletion' },
+  { label: 'Sub-processors', href: '/subprocessors' },
+  { label: 'Refund policy', href: '/refund-policy' },
+  { label: 'Delivery', href: '/delivery' },
+  { label: 'Grievance Officer', href: '/contact#grievance' },
 ];
 
 /* ------------------------------------------------------------- PROOF DATA -- */
@@ -146,9 +158,24 @@ export const CUSTOMERS = [
   'DnR Studios', 'Saraswat Bank', 'Salasar Techno',
 ];
 
-export const INTEGRATIONS = [
-  'Twilio', 'Google', 'Anthropic', 'OpenAI', 'Stripe', 'Razorpay',
-  'Plaid', 'DocuSign', 'Slack', 'Microsoft Teams',
+// The accounts a business can connect today, and what HireBuddha does with
+// each. Keep in step with the privacy policy (section 6): name nothing that
+// isn't built.
+export const CONNECTIONS: { name: string; does: string }[] = [
+  { name: 'Gmail', does: 'Reads and answers your Gmail. Replies wait as drafts until you approve them.' },
+  { name: 'Outlook', does: 'Reads and answers Outlook and Microsoft 365 mail through Microsoft Graph.' },
+  { name: 'Google Drive', does: 'Opens the files you choose and saves the files your AI employees produce.' },
+  { name: 'YouTube', does: 'Publishes the videos you approve to your channel and shows its analytics.' },
+  { name: 'Google Ads', does: 'Reports on your campaigns, and changes them only after you approve.' },
+  { name: 'Facebook Pages', does: 'Publishes posts, replies to comments and answers Messenger messages.' },
+  { name: 'Instagram', does: 'Publishes posts and answers the comments and Direct messages you approve.' },
+  { name: 'WhatsApp', does: 'Replies to your WhatsApp customers, in their language, at any hour.' },
+  { name: 'LinkedIn Pages', does: 'Posts to your LinkedIn Page and shows how each post performs.' },
+  { name: 'X', does: 'Drafts and publishes posts to your X account, and replies where you approve.' },
+  { name: 'GitHub', does: 'Reads code, pushes branches and opens pull requests in the repos you choose.' },
+  { name: 'HubSpot', does: 'Works with your CRM’s contacts and deals through your own HubSpot token.' },
+  { name: 'Any mailbox (IMAP)', does: 'Connects any other mailbox with an app password.' },
+  { name: 'MCP servers', does: 'Brings your own tools to your AI employees through the Model Context Protocol.' },
 ];
 
 export const SECURITY_BADGES = [

@@ -1,5 +1,8 @@
 .tool { display: grid; grid-template-columns: 300px 1fr; gap: clamp(28px, 4vw, 56px); padding: clamp(24px, 3vw, 40px); border: 1px solid var(--border-gold); border-radius: var(--r-2xl); background: radial-gradient(120% 120% at 0% 0%, rgba(237,171,72,.07), transparent 55%); }
 @media (max-width: 860px) { .tool { grid-template-columns: 1fr; gap: 28px; } }
+/* Grid children default to min-width:auto; let them shrink below their
+   content so the timeline bars never widen the page. */
+.tool > *, .days, .barWrap, .bar { min-width: 0; }
 
 .pickLabel { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 16px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -29,3 +32,4 @@
 .teamChips { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
 .teamChip { font-size: 11px; color: var(--fg-muted); padding: 5px 10px; border-radius: var(--r-pill); border: 1px solid var(--border); background: rgba(255,255,255,.012); }
 .freed { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--positive); white-space: nowrap; }
+@media (max-width: 600px) { .team { flex-direction: column; align-items: flex-start; } .teamChips { flex: none; } }

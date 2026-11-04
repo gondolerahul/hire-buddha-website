@@ -14,8 +14,8 @@
 @media (max-width: 1080px) { .cols { grid-template-columns: repeat(3, 1fr); gap: 32px 24px; } }
 @media (max-width: 620px) { .cols { grid-template-columns: 1fr 1fr; gap: 32px 20px; } }
 .colHead { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--track-eyebrow); text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 16px; }
-.colList { display: flex; flex-direction: column; gap: 11px; }
-.colLink { font-size: var(--text-sm); color: var(--fg-muted); width: fit-content; transition: color .25s var(--ease-out), transform .25s var(--ease-out); }
+.colList { display: flex; flex-direction: column; gap: 3px; }
+.colLink { font-size: var(--text-sm); color: var(--fg-muted); width: fit-content; padding-block: 5px; transition: color .25s var(--ease-out), transform .25s var(--ease-out); }
 .colLink:hover { color: var(--accent); transform: translateX(3px); }
 
 .bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-block: 26px; border-top: 1px solid var(--border); }
@@ -39,3 +39,14 @@
   -webkit-background-clip: text; background-clip: text;
   filter: drop-shadow(0 0 26px rgba(237,171,72,.22));
 }
+
+/* Legal identity: the company, CIN, registered office and the legal pages. */
+.company { display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px 48px; padding-block: 26px; border-top: 1px solid var(--border); }
+@media (max-width: 860px) { .company { grid-template-columns: 1fr; } }
+.companyBlock { display: flex; flex-direction: column; gap: 6px; font-style: normal; font-size: var(--text-xs); line-height: 1.6; color: var(--fg-subtle); }
+.companyName { color: var(--fg-muted); font-weight: 600; }
+.inlineLink { color: var(--fg-muted); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+.inlineLink:hover { color: var(--accent); }
+.legalNav { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 20px; }
+.legalLink { font-size: var(--text-xs); color: var(--fg-muted); padding-block: 6px; }
+.legalLink:hover { color: var(--accent); }

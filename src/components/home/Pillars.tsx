@@ -17,8 +17,8 @@ const PILLARS: Pillar[] = [
     body: 'Traditional businesses leak money at every handoff between silos. Sheel dissolves them into one continuous, self-running loop — six arcs sharing one brain, one memory, one face. No departments. No seams. No context lost.',
   },
   {
-    num: '03', title: 'Pennies per task. Not salaries per head.', icon: Coins, href: '/pricing', cta: 'See Pricing',
-    body: 'Every task is billed at micro-cent precision. An Intelligent Router sends each step to the cheapest model that will succeed — so you pay frontier prices only on the 10–20% of steps that truly need them.',
+    num: '03', title: 'Rupees per task. Not salaries per head.', icon: Coins, href: '/pricing', cta: 'See Pricing',
+    body: 'Every task is billed to a fraction of a paisa. An Intelligent Router sends each step to the cheapest model that will succeed — so you pay frontier prices only on the 10–20% of steps that truly need them.',
   },
 ];
 

@@ -1,11 +1,12 @@
-import type { Metadata } from 'next';
 import { PageHero, Section, Card, CardGrid, CTABand } from '@/components/page/kit';
 import { USE_CASES } from '@/lib/content';
+import { buildMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: 'Use Cases — What You Can Deploy',
   description: 'Industry-agnostic scenarios you can deploy in minutes: outbound sales, 24/7 support, financial reconciliation, voice screening, contract review, executive briefings, and Meta-Agent builds.',
-};
+  path: '/use-cases',
+});
 
 export default function UseCasesPage() {
   return (
@@ -26,7 +27,7 @@ export default function UseCasesPage() {
           ))}
         </CardGrid>
       </Section>
-      <CTABand title="Find your use case in minutes." sub="Tell Pragya what you do and she’ll map it to the loop — then build what’s missing." primary="Get Started Free" />
+      <CTABand title="Find your use case in minutes." sub="Tell Pragya what you do and she’ll map it to the loop — then build what’s missing." primary="Start Free" />
     </>
   );
 }

@@ -99,7 +99,7 @@ export function LiquidGoldGL({ radius = 0.36, centerY = 0.46, interactive = true
   const [fallback, setFallback] = useState(false);
 
   useEffect(() => {
-    if (reduce) { setFallback(true); return; }
+    if (reduce) return;
     const canvas = ref.current;
     if (!canvas) return;
 
@@ -202,6 +202,6 @@ export function LiquidGoldGL({ radius = 0.36, centerY = 0.46, interactive = true
     };
   }, [reduce, radius, centerY, interactive]);
 
-  if (fallback) return <LiquidGold radius={radius} centerY={centerY} interactive={interactive} className={className} style={style} />;
+  if (reduce || fallback) return <LiquidGold radius={radius} centerY={centerY} interactive={interactive} className={className} style={style} />;
   return <canvas ref={ref} className={className} style={{ display: 'block', width: '100%', height: '100%', ...style }} aria-hidden />;
 }

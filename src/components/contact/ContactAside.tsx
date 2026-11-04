@@ -2,6 +2,7 @@
 
 import { MessageSquare, CalendarClock, Building2 } from 'lucide-react';
 import { talkToPragya } from '@/lib/pragya';
+import { company } from '@/config/company';
 
 const cardStyle: React.CSSProperties = {
   display: 'flex', gap: 14, alignItems: 'center', padding: '14px 16px', borderRadius: 'var(--r-lg)',
@@ -24,15 +25,15 @@ function Body({ title, body }: { title: string; body: string }) {
 export function ContactAside() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 460 }}>
-      <button onClick={() => talkToPragya()} style={cardStyle} className="promptHover" data-cursor>
+      <button type="button" onClick={() => talkToPragya()} style={cardStyle} className="promptHover" data-cursor>
         <span style={iconStyle}><MessageSquare size={18} /></span>
         <Body title="Talk to Pragya" body="Ask anything by text or voice, right now." />
       </button>
-      <a href="mailto:hello@hirebuddha.com?subject=Demo%20request" style={cardStyle} className="promptHover" data-cursor>
+      <a href={`mailto:${company.email.contact}?subject=Demo%20request`} style={cardStyle} className="promptHover" data-cursor>
         <span style={iconStyle}><CalendarClock size={18} /></span>
-        <Body title="Schedule a demo" body="See the platform with our team." />
+        <Body title="Schedule a demo" body={`See the platform with our team. ${company.email.contact}`} />
       </a>
-      <a href="mailto:enterprise@hirebuddha.com" style={cardStyle} className="promptHover" data-cursor>
+      <a href={`mailto:${company.email.contact}?subject=Enterprise%20enquiry`} style={cardStyle} className="promptHover" data-cursor>
         <span style={iconStyle}><Building2 size={18} /></span>
         <Body title="Enterprise & security" body="SSO, residency, governance, and procurement." />
       </a>

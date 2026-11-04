@@ -1,11 +1,12 @@
-import type { Metadata } from 'next';
 import { PageHero, Section, SectionHead, Split, CTABand } from '@/components/page/kit';
 import { ToolSuites } from '@/components/product/ToolSuites';
+import { buildMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: 'Tools & Capabilities — 20+ Built-In Tools',
-  description: 'Every AI Employee comes equipped with tools for web intelligence, email, document generation, voice, creative production, code execution, and enterprise integrations — plus custom tools the Meta Agent builds on demand.',
-};
+  description: 'Built-in tools for web research, e-mail, documents, voice, creative work and code, plus connections to your accounts and custom tools the Meta Agent builds.',
+  path: '/product/tools',
+});
 
 export default function ToolsPage() {
   return (

@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
 import { Compass, Gauge, HeartHandshake, Infinity as Loop } from 'lucide-react';
 import { PageHero, Section, SectionHead, Card, CardGrid, CTABand } from '@/components/page/kit';
 import { Reveal } from '@/components/motion/primitives';
+import { buildMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: 'About — Buddha Cognitive Lab',
   description: 'Buddha Cognitive Lab is a frontier AI lab building HireBuddha — the platform that lets any business design, deploy, and employ an autonomous AI workforce. Towards digital enlightenment.',
-};
+  path: '/about',
+});
 
 const BELIEFS = [
   { icon: Compass, title: 'Outcomes over org charts', body: 'The department was a workaround for human specialization. Design for autonomous execution and the company resolves into one loop.' },
@@ -37,7 +38,7 @@ export default function AboutPage() {
               Every business spends its first decade building departments — hiring, training, managing, and replacing people to run functions that, in principle, could run themselves. We think that era is ending.
             </p>
             <p style={{ color: 'var(--fg-muted)', lineHeight: 1.8, fontSize: 'var(--text-md)', marginBottom: 22 }}>
-              HireBuddha lets you design an AI Employee, deploy it across every channel, and employ it to run real operations — sales, support, finance, legal, HR, and more — on one unified loop called Sheel. The Meta Agent builds what you can’t, and the Learning System makes the whole thing smarter every week.
+              HireBuddha lets you design an AI Employee, deploy it across every channel, and employ it to run real operations — sales, support, finance, legal, HR, and more — on one unified loop called Sheel. The Meta Agent builds what you can’t, and the Learning System makes your workforce better at your business every week. That learning stays inside each business; we never train shared models on customer data.
             </p>
             <p style={{ color: 'var(--fg-muted)', lineHeight: 1.8, fontSize: 'var(--text-md)' }}>
               The names we use carry the idea. <b style={{ color: 'var(--fg)' }}>Pragya</b> is wisdom — the single point of contact who knows everything. <b style={{ color: 'var(--fg)' }}>Sheel</b> is disciplined conduct — the loop that acts. <b style={{ color: 'var(--fg)' }}>Karuna</b> is compassion — the face turned to the world. Wise within, disciplined throughout, compassionate outward.
@@ -53,7 +54,7 @@ export default function AboutPage() {
         </CardGrid>
       </Section>
 
-      <CTABand title="Build the company that runs itself." sub="Start free, or talk to Pragya about where your business should begin." primary="Get Started Free" />
+      <CTABand title="Build the company that runs itself." sub="Start free, or talk to Pragya about where your business should begin." primary="Start Free" />
     </>
   );
 }

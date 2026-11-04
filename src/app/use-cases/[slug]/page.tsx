@@ -1,20 +1,20 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Check } from 'lucide-react';
 import { PageHero, Section, SectionHead, Timeline, CTABand } from '@/components/page/kit';
 import { Reveal } from '@/components/motion/primitives';
 import { USE_CASES } from '@/lib/content';
 import c from '@/components/page/content.module.css';
+import { buildMetadata } from '@/lib/metadata';
 
 export function generateStaticParams() {
   return USE_CASES.map((u) => ({ slug: u.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }){
   const { slug } = await params;
   const u = USE_CASES.find((x) => x.slug === slug);
   if (!u) return {};
-  return { title: u.title, description: u.summary };
+  return buildMetadata({ title: u.title, description: u.summary, path: `/use-cases/${u.slug}` });
 }
 
 export default async function UseCasePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -54,7 +54,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
         </div>
       </Section>
 
-      <CTABand title="Deploy this in under 10 minutes." sub="Start with $5 in free daily credits, or have Pragya set it up with you." primary="Get Started Free" />
+      <CTABand title="Deploy this in under 10 minutes." sub="Start with ₹500 in free daily credits, or have Pragya set it up with you." primary="Start Free" />
     </>
   );
 }

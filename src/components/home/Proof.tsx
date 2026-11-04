@@ -2,7 +2,7 @@
 
 import { ShieldCheck } from 'lucide-react';
 import { Reveal, CountUp, Marquee } from '@/components/motion/primitives';
-import { CUSTOMERS, INTEGRATIONS, SECURITY_BADGES } from '@/lib/site';
+import { CUSTOMERS, SECURITY_BADGES } from '@/lib/site';
 import s from './home.module.css';
 
 export function Proof() {
@@ -29,6 +29,8 @@ export function Proof() {
           <Marquee speed={42}>
             {CUSTOMERS.map((c) => <span key={c} className={s.logoItem}>{c}</span>)}
           </Marquee>
+          {/* The marquee is aria-hidden (it repeats itself); screen readers get the list once. */}
+          <ul className="sr-only">{CUSTOMERS.map((c) => <li key={c}>{c}</li>)}</ul>
         </Reveal>
 
         <Reveal>
@@ -46,15 +48,9 @@ export function Proof() {
               legal, and operations, all automated.
             </blockquote>
             <figcaption className={s.featuredMeta}>
-              Durwankur AI Labs · Illustrative deployment
+              Durwankur AI Labs · Legal
             </figcaption>
           </figure>
-        </Reveal>
-
-        <Reveal>
-          <div className={s.marqueeLabel} style={{ marginTop: 56, marginBottom: 14 }}>
-            Works with {INTEGRATIONS.join(' · ')}
-          </div>
         </Reveal>
       </div>
     </section>

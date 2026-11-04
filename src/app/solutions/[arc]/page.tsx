@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
@@ -7,6 +6,7 @@ import { Reveal } from '@/components/motion/primitives';
 import { ARCS } from '@/lib/site';
 import { ARC_DETAIL, ARC_SLUGS, nextArc } from '@/lib/arcs';
 import type { SceneName } from '@/components/visual/heroScenes';
+import { buildMetadata } from '@/lib/metadata';
 
 // Each arc gets its own hero instrument — the motif matches the arc's verb.
 const ARC_SCENES: Record<string, SceneName> = {
@@ -22,14 +22,15 @@ export function generateStaticParams() {
   return ARC_SLUGS.map((arc) => ({ arc }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ arc: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ arc: string }> }){
   const { arc } = await params;
   const a = ARCS.find((x) => x.slug === arc);
   if (!a) return {};
-  return {
-    title: `${a.name} — Arc ${a.numeral} of Sheel`,
-    description: `${a.oneLiner} Absorbs ${a.absorbs}. One of the six arcs of Sheel, HireBuddha’s unified business loop.`,
-  };
+  return buildMetadata({
+    title: `${a.name}: Arc ${a.numeral} of Sheel`,
+    description: `${a.oneLiner} Absorbs ${a.absorbs}.`,
+    path: `/solutions/${a.slug}`,
+  });
 }
 
 export default async function ArcPage({ params }: { params: Promise<{ arc: string }> }) {
@@ -92,7 +93,7 @@ export default async function ArcPage({ params }: { params: Promise<{ arc: strin
       <CTABand
         title={`Activate the ${a.name} arc.`}
         sub="Start with one arc or run all six. Pragya maps your business to Sheel and the Meta Agent builds what’s missing."
-        primary="Get Started Free"
+        primary="Start Free"
       />
     </>
   );

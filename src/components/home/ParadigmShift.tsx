@@ -6,14 +6,14 @@ import s from './home.module.css';
 
 const OLD = [
   '90 days to onboard a single hire',
-  '$45,000 average cost to recruit and train',
+  '₹38 lakh average cost to recruit and train',
   '2.3 years average tenure — then the cycle repeats',
   'Context walks out the door when someone resigns',
   'Performance varies with fatigue, mood, and Monday mornings',
 ];
 const NEW = [
   '10 minutes from design to deployment',
-  '$0.50 minimum to start a process',
+  '₹50 minimum to start a process',
   '24 / 7 / 365 — no attrition, no sick days',
   'CORTEX memory retains everything, permanently',
   'Week 12 outperforms Week 1 — automatically',
@@ -54,7 +54,7 @@ export function ParadigmShift() {
 
         <Reveal y={20}>
           <p className={s.bridge}>
-            Every dollar you spend on headcount is a dollar your competitor spends on growth.
+            Every rupee you spend on headcount is a rupee your competitor spends on growth.
             The math isn&apos;t complicated. The decision shouldn&apos;t be either.
           </p>
         </Reveal>

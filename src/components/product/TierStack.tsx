@@ -20,10 +20,10 @@ const TIERS: Tier[] = [
     example: '“Sarah — Lead Qualification Rep” answers inbound calls, qualifies against your ICP, books demos, and remembers every prospect.' },
   { tier: 'Tier 4', name: 'Skill', analogy: 'Specialist / Task Executor', icon: Wrench, w: 52,
     desc: 'An optimized block of logic focused on a single technical task. Takes raw inputs, runs computations, generates documents, delivers outputs. No conversation — just precise, reliable execution.',
-    example: '“Contract Generation & E-Signature Routing” parses templates, runs ROI math, builds a PDF, and routes via DocuSign.' },
+    example: '“Contract Generation & E-Signature Routing” parses templates, runs ROI math, builds a PDF, and routes it to the signer.' },
   { tier: 'Tier 5', name: 'Action', analogy: 'API Caller / Tool Operator', icon: Zap, w: 36,
     desc: 'A thin wrapper around a single registered Tool — the interface between the AI Engine and external systems. The smallest unit of work in the platform.',
-    example: '“Query Salesforce for Company ID” calls the CRM API, validates the response, handles timeouts, returns the result.' },
+    example: '“Look up the company in HubSpot” calls the CRM API, validates the response, handles timeouts, returns the result.' },
 ];
 
 export function TierStack() {

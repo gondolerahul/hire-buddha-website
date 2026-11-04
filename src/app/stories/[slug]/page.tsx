@@ -1,20 +1,20 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Check } from 'lucide-react';
 import { PageHero, Section, SectionHead, CTABand } from '@/components/page/kit';
 import { Reveal } from '@/components/motion/primitives';
 import { STORIES } from '@/lib/content';
 import c from '@/components/page/content.module.css';
+import { buildMetadata } from '@/lib/metadata';
 
 export function generateStaticParams() {
   return STORIES.map((s) => ({ slug: s.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }){
   const { slug } = await params;
   const s = STORIES.find((x) => x.slug === slug);
   if (!s) return {};
-  return { title: `${s.company} — Impact Story`, description: s.summary };
+  return buildMetadata({ title: `${s.company}: Impact Story`, description: s.summary, path: `/stories/${s.slug}` });
 }
 
 export default async function StoryPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -36,11 +36,11 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
       <Section>
         <div className={c.storyBlocks}>
           <Reveal y={20} className={c.storyBlock}>
-            <h3>The challenge</h3>
+            <h2>The challenge</h2>
             <p>{s.before}</p>
           </Reveal>
           <Reveal y={20} delay={0.08} className={c.storyBlock}>
-            <h3>The deployment</h3>
+            <h2>The deployment</h2>
             <p>{s.deployment}</p>
           </Reveal>
         </div>
@@ -62,7 +62,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
         </div>
       </Section>
 
-      <CTABand title="Could this be your company?" sub="Tell Pragya what you do and she’ll map it to the loop." primary="Get Started Free" />
+      <CTABand title="Could this be your company?" sub="Tell Pragya what you do and she’ll map it to the loop." primary="Start Free" />
     </>
   );
 }

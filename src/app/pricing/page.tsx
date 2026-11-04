@@ -1,39 +1,41 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Check, Gift, Wallet, CalendarClock } from 'lucide-react';
-import { PageHero, Section, SectionHead, Card, CardGrid, StatGrid, CTABand } from '@/components/page/kit';
+import { PageHero, Section, SectionHead, Card, StatGrid, CTABand } from '@/components/page/kit';
 import { Reveal } from '@/components/motion/primitives';
 import { ROICalculator } from '@/components/pricing/ROICalculator';
+import { SIGNUP_URL } from '@/config/company';
+import { buildMetadata } from '@/lib/metadata';
 import s from './pricing.module.css';
 
-export const metadata: Metadata = {
-  title: 'Pricing — Pay for Outcomes, Not Salaries',
-  description: 'SKU-based, pay-per-outcome pricing with micro-cent cost tracking and a router that runs each step on the cheapest model that will succeed. Start free with $5 in daily credits.',
-};
+export const metadata = buildMetadata({
+  title: 'Pricing: Pay for Outcomes, Not Salaries',
+  description: 'Usage-based pricing for AI employees, tracked to a fraction of a paisa. Start free with ₹500 in daily credits; Starter ₹10,000 and Growth ₹25,000 a month. Prices exclude GST.',
+  path: '/pricing',
+});
 
 const WALLET = [
-  { icon: Gift, title: 'Daily Credits', body: 'A free daily allocation — $5.00/day — to explore and run real work. Expires at midnight; no card required to start.' },
-  { icon: Wallet, title: 'PAYG Wallet', body: 'Top up funds and spend them as you go, billed at micro-cent precision per task. Valid for 365 days.' },
-  { icon: CalendarClock, title: 'Subscription Credits', body: 'Monthly plans add bonus credits — up to 40% — for teams running steady volume across the loop.' },
+  { icon: Gift, title: 'Daily Credits', body: 'A free daily allocation — ₹500 a day — to explore and run real work. Daily credits expire at the end of the day they are given; no card required to start.' },
+  { icon: Wallet, title: 'PAYG Wallet', body: 'Top up and spend as you go, billed per task to a fraction of a paisa. Credits you buy are valid for 365 days from purchase.' },
+  { icon: CalendarClock, title: 'Subscription Credits', body: 'Monthly plans (Starter ₹10,000, Growth ₹25,000) raise your limits and add bonus credits on top of what you buy — up to 40%. Plan credits follow the plan’s terms.' },
 ];
 
 const PLANS = [
-  { name: 'Free', price: '$0', note: '$5 daily credits. No card required.', feat: false, cta: 'Get Started', href: '/contact',
+  { name: 'Free', price: '₹0', per: '', note: '₹500 daily credits. No card required.', feat: false, cta: 'Start Free', href: SIGNUP_URL,
     items: ['2 AI Employees', '1 Sheel arc', '30 voice minutes / mo', 'Basic HITL checkpoints', 'Community support'] },
-  { name: 'Starter', price: 'PAYG', note: 'Pay as you go + 10% bonus credits.', feat: false, cta: 'Get Started', href: '/contact',
+  { name: 'Starter', price: '₹10,000', per: '/month', note: 'Billed monthly, +10% bonus credits on every top-up. For a founder or a small team.', feat: false, cta: 'Start Free', href: SIGNUP_URL,
     items: ['10 AI Employees', '3 Sheel arcs', '500 voice minutes / mo', 'Full HITL governance', 'Email support'] },
-  { name: 'Growth', price: 'PAYG', note: 'Pay as you go + 25% bonus credits.', feat: true, cta: 'Get Started', href: '/contact',
+  { name: 'Growth', price: '₹25,000', per: '/month', note: 'Billed monthly, +25% bonus credits on every top-up. For teams running several arcs.', feat: true, cta: 'Start Free', href: SIGNUP_URL,
     items: ['50 AI Employees', 'All 6 Sheel arcs', '2,000 voice minutes / mo', 'Full HITL governance', 'Priority support'] },
-  { name: 'Enterprise', price: 'Custom', note: 'Volume pricing + 40% bonus credits.', feat: false, cta: 'Talk to Sales', href: '/contact',
+  { name: 'Enterprise', price: 'Custom', per: '', note: 'Volume pricing + 40% bonus credits.', feat: false, cta: 'Talk to Sales', href: '/contact',
     items: ['Unlimited AI Employees', 'All 6 arcs + custom', 'Unlimited voice', 'Custom HITL + SSO + residency', 'Dedicated support'] },
 ];
 
 const CMP = [
-  { task: 'Outbound sales call', human: '$15–25', hb: '~$0.03–0.10', save: '99%+' },
-  { task: 'Support ticket resolution', human: '$8–15', hb: '~$0.02–0.05', save: '99%+' },
-  { task: 'Invoice reconciliation', human: '$20–40', hb: '~$0.01–0.03', save: '99%+' },
-  { task: 'Contract review', human: '$200–500', hb: '~$0.50–2.00', save: '95%+' },
-  { task: 'Candidate screening call', human: '$30–50', hb: '~$0.05–0.15', save: '99%+' },
+  { task: 'Outbound sales call', human: '₹1,300–2,100', hb: '~₹2.5–8.5', save: '99%+' },
+  { task: 'Support ticket resolution', human: '₹700–1,300', hb: '~₹1.7–4.3', save: '99%+' },
+  { task: 'Invoice reconciliation', human: '₹1,700–3,400', hb: '~₹0.85–2.6', save: '99%+' },
+  { task: 'Contract review', human: '₹17,000–42,500', hb: '~₹45–170', save: '95%+' },
+  { task: 'Candidate screening call', human: '₹2,550–4,250', hb: '~₹4–13', save: '99%+' },
 ];
 
 export default function PricingPage() {
@@ -43,7 +45,7 @@ export default function PricingPage() {
         scene="ledger"
         eyebrow="Pricing · Economics"
         title="Pay for outcomes. Not salaries."
-        lead="SKU-based pricing with micro-cent cost tracking and no fixed commitments. An Intelligent Router runs each step on the cheapest model that will succeed — so you pay frontier prices only where they’re truly needed."
+        lead="SKU-based pricing with sub-paisa cost tracking and no long-term commitments. An Intelligent Router runs each step on the cheapest model that will succeed — so you pay frontier prices only where they’re truly needed."
         ctaPrimary="Start Free"
         ctaPragya="Talk to Pragya about pricing"
         visual="ring"
@@ -79,13 +81,13 @@ export default function PricingPage() {
       </Section>
 
       <Section>
-        <SectionHead title="Plans that scale with you." lead="Every plan includes $5 in free daily credits. Numbers shown are illustrative starting points." />
+        <SectionHead title="Plans that scale with you." lead="Every plan includes ₹500 in free daily credits and the same per-task prices. Starter and Growth are monthly plans that raise your limits and add bonus credits to every top-up, so choose by the size of the workforce you run." />
         <div className={s.plans}>
           {PLANS.map((p) => (
             <Reveal key={p.name} y={24} className={`${s.plan} ${p.feat ? s.planFeat : ''}`} style={{ display: 'flex' }} data-spot>
               {p.feat && <span className={s.planTag}>Most popular</span>}
               <div className={s.planName}>{p.name}</div>
-              <div className={s.planPrice}>{p.price}</div>
+              <div className={s.planPrice}>{p.price}{p.per && <small>{p.per}</small>}</div>
               <div className={s.planNote}>{p.note}</div>
               <div className={s.planList}>
                 {p.items.map((it) => <div key={it} className={s.planItem}><Check size={16} /> {it}</div>)}
@@ -94,22 +96,27 @@ export default function PricingPage() {
             </Reveal>
           ))}
         </div>
+        <p className={s.terms}>
+          Prices are in Indian rupees and exclude taxes; GST is added where it applies. You are billed through Razorpay in the
+          currency shown at checkout. Monthly plans renew until you cancel, and cancelling takes effect at the end of the month you paid for. See our <Link href="/terms">Terms of Service</Link> and{' '}
+          <Link href="/refund-policy">cancellation and refund policy</Link>.
+        </p>
       </Section>
 
       <Section>
-        <SectionHead title="Start with less than a dollar." lead="Transparent minimum wallet balances per execution type. No runaway spend — every cent is tracked and gated." />
+        <SectionHead title="Start with less than ₹100." lead="Transparent minimum wallet balances per execution type. No runaway spend — every paisa is tracked and gated." />
         <StatGrid stats={[
-          { num: '$0.50', label: 'to start a Process' },
-          { num: '$0.05', label: 'to start an Agent' },
-          { num: '$0.02', label: 'to start a Skill' },
-          { num: '$0.01', label: 'to start an Action' },
+          { num: '₹50', label: 'to start a Process' },
+          { num: '₹5', label: 'to start an Agent' },
+          { num: '₹2', label: 'to start a Skill' },
+          { num: '₹1', label: 'to start an Action' },
         ]} />
       </Section>
 
       <CTABand
         title="Start free. Pay only for outcomes."
-        sub="$5 in daily credits, no credit card required. Design your first AI Employee in under 10 minutes."
-        primary="Get Started Free"
+        sub="₹500 in daily credits, no credit card required. Design your first AI Employee in under 10 minutes."
+        primary="Start Free"
       />
     </>
   );

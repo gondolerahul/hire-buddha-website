@@ -47,7 +47,7 @@
 .colOld { background: linear-gradient(180deg, rgba(255,255,255,.015), transparent); }
 .colNew { border-color: var(--border-gold); background: radial-gradient(120% 120% at 0% 0%, rgba(237,171,72,.10), transparent 55%); }
 .colTag { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--track-eyebrow); text-transform: uppercase; margin-bottom: 8px; }
-.colOld .colTag { color: var(--fg-faint); }
+.colOld .colTag { color: var(--fg-subtle); }
 .colNew .colTag { color: var(--accent); }
 .colTitle { font-family: var(--font-display); font-size: var(--text-2xl); margin-bottom: 28px; letter-spacing: var(--track-tight); }
 .colOld .colTitle { color: var(--fg-subtle); }

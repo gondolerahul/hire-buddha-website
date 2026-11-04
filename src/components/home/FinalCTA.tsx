@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { LiquidGold } from '@/components/visual/LiquidGold';
 import { KineticWords, Reveal, Magnetic } from '@/components/motion/primitives';
 import { talkToPragya } from '@/lib/pragya';
+import { SIGNUP_URL } from '@/config/company';
 import s from './home.module.css';
 
 export function FinalCTA() {
@@ -19,20 +19,20 @@ export function FinalCTA() {
         </h2>
         <Reveal delay={0.2}>
           <p className={s.finalSub}>
-            Every day you operate the old way is a day your competitors are deploying. Start with $5 in
+            Every day you operate the old way is a day your competitors are deploying. Start with ₹500 in
             free daily credits. No credit card required.
           </p>
         </Reveal>
         <Reveal delay={0.3}>
           <div className={s.finalCtas}>
             <Magnetic strength={0.4}>
-              <Link href="/contact" className="btn btn-gold btn-lg" data-cursor>Get Started Free <ArrowUpRight size={17} /></Link>
+              <a href={SIGNUP_URL} className="btn btn-gold btn-lg" data-cursor>Start Free <ArrowUpRight size={17} /></a>
             </Magnetic>
             <Magnetic strength={0.25}>
-              <button className="btn btn-ghost btn-lg" onClick={() => talkToPragya()}>Talk to Pragya</button>
+              <button type="button" className="btn btn-ghost btn-lg" onClick={() => talkToPragya()}>Talk to Pragya</button>
             </Magnetic>
           </div>
-          <p className={s.finalTiny}>$5 daily credits · No card required · Deploy in under 10 minutes</p>
+          <p className={s.finalTiny}>₹500 daily credits · No card required · First AI Employee in under 10 minutes</p>
         </Reveal>
       </div>
     </section>

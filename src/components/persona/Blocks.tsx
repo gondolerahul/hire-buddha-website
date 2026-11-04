@@ -26,7 +26,9 @@ function Table({ columns, rows, highlight }: { columns: string[]; rows: string[]
   );
 }
 
-export function Blocks({ items }: { items: Block[] }) {
+// `outline` names an unheaded timeline for screen readers, so its step
+// titles (h3) never follow the page's h1 directly.
+export function Blocks({ items, outline = 'Step by step' }: { items: Block[]; outline?: string }) {
   return (
     <>
       {items.map((b, i) => {
@@ -54,7 +56,9 @@ export function Blocks({ items }: { items: Block[] }) {
           case 'timeline':
             return (
               <Section key={i}>
-                {(b.eyebrow || b.heading) && <SectionHead eyebrow={b.eyebrow} title={b.heading ?? ''} lead={b.lead} />}
+                {(b.eyebrow || b.heading)
+                  ? <SectionHead eyebrow={b.eyebrow} title={b.heading ?? ''} lead={b.lead} />
+                  : <h2 className="sr-only">{outline}</h2>}
                 <Timeline items={b.items} />
               </Section>
             );

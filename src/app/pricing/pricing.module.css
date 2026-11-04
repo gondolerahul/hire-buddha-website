@@ -34,3 +34,5 @@
 /* wallet */
 .wallet { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 @media (max-width: 760px) { .wallet { grid-template-columns: 1fr; } }
+.terms { margin-top: 22px; font-size: var(--text-sm); color: var(--fg-subtle); line-height: 1.6; max-width: 80ch; }
+.terms a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }

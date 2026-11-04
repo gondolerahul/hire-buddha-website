@@ -1,14 +1,14 @@
 'use client';
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { LiquidGoldGL } from '@/components/visual/LiquidGoldGL';
-import { KineticWords, Magnetic } from '@/components/motion/primitives';
+import { KineticWords, Magnetic, Reveal } from '@/components/motion/primitives';
 import { talkToPragya } from '@/lib/pragya';
+import { SIGNUP_URL } from '@/config/company';
 import s from './home.module.css';
 
-const FADE = { initial: { opacity: 0, y: 18 }, animate: { opacity: 1, y: 0 } };
+// Every entrance here is CSS-driven (`immediate`), so the headline, lead and
+// CTAs are in view from the server HTML, before hydration.
 
 export function Hero() {
   return (
@@ -18,37 +18,37 @@ export function Hero() {
 
       <div className={`u-container u-container--wide ${s.heroInner}`}>
         <div className={s.heroGrid}>
-          <motion.div className={`u-eyebrow ${s.heroEyebrow}`} {...FADE} transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}>
+          <Reveal immediate y={18} delay={0.15} className={`u-eyebrow ${s.heroEyebrow}`}>
             Autonomous AI Workforce
-          </motion.div>
+          </Reveal>
 
           <h1 className={s.heroTitle}>
-            <KineticWords as="span" className={s.ln} text="Stop Hiring." stagger={0.07} delay={0.2} />
-            <KineticWords as="span" className={s.ln} text="Start Deploying." stagger={0.07} delay={0.42} highlight={[1]} />
+            <KineticWords immediate as="span" className={s.ln} text="Stop Hiring." stagger={0.07} delay={0.2} />
+            <KineticWords immediate as="span" className={s.ln} text="Start Deploying." stagger={0.07} delay={0.42} highlight={[1]} />
           </h1>
 
-          <motion.p className={s.heroSub} {...FADE} transition={{ duration: 0.8, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}>
+          <Reveal immediate as="p" y={18} delay={0.5} duration={0.8} className={s.heroSub}>
             Design AI Employees in minutes. Deploy entire business operations across phone,
             email, and chat — before lunch.
-          </motion.p>
+          </Reveal>
 
-          <motion.div className={s.heroCtas} {...FADE} transition={{ duration: 0.8, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}>
+          <Reveal immediate y={18} delay={0.65} duration={0.8} className={s.heroCtas}>
             <Magnetic strength={0.4}>
-              <Link href="/contact" className="btn btn-gold btn-lg" data-cursor>Get Started Free <ArrowUpRight size={17} /></Link>
+              <a href={SIGNUP_URL} className="btn btn-gold btn-lg" data-cursor>Start Free <ArrowUpRight size={17} /></a>
             </Magnetic>
-            <button className="btn btn-ghost btn-lg" onClick={() => talkToPragya()}>Talk to Pragya →</button>
-          </motion.div>
+            <button type="button" className="btn btn-ghost btn-lg" onClick={() => talkToPragya()}>Talk to Pragya →</button>
+          </Reveal>
 
-          <motion.div className={s.scrollCue} {...FADE} transition={{ duration: 1, delay: 1.4 }}>
+          <Reveal immediate y={18} delay={1.1} duration={1} className={s.scrollCue}>
             <span className={s.scrollLine} aria-hidden /> Scroll to explore
-          </motion.div>
+          </Reveal>
         </div>
 
-        <motion.div className={s.heroStatus} {...FADE} transition={{ duration: 0.9, delay: 1.2, ease: [0.16, 1, 0.3, 1] }} aria-hidden>
+        <Reveal immediate y={18} delay={0.9} duration={0.9} className={s.heroStatus} aria-hidden>
           <span className={s.statusChip}><span className={s.dot} /> One loop · Six arcs</span>
           <span className={s.statusChip}>24 / 7 / 365 · 0 attrition</span>
-          <span className={s.statusChip}>$0.50 to start</span>
-        </motion.div>
+          <span className={s.statusChip}>₹50 to start</span>
+        </Reveal>
       </div>
     </section>
   );

@@ -20,7 +20,9 @@
 .loop { display: grid; place-items: center; padding: 20px 0; }
 .loopRing { --loop-r: clamp(150px, 24vw, 230px); position: relative; width: calc(var(--loop-r) * 2 + 120px); height: calc(var(--loop-r) * 2 + 120px); max-width: 100%; border-radius: 50%; }
 .loopRing::before { content: ''; position: absolute; inset: 60px; border-radius: 50%; border: 1px dashed var(--border-gold); opacity: .5; }
-@media (max-width: 560px) { .loopRing { --loop-r: 130px; } }
+/* On phones the radius follows the viewport, leaving room for the longest
+   label (~90px) to the right of the 0° node. */
+@media (max-width: 560px) { .loopRing { --loop-r: min(130px, calc(50vw - 100px)); } }
 .loopNode { position: absolute; top: 50%; left: 50%; margin: -10px 0 0 -10px; display: flex; align-items: center; gap: 8px; transform-origin: 0 0; }
 .loopDot { width: 12px; height: 12px; border-radius: 50%; background: var(--ink-700); border: 1px solid var(--border-strong); transition: all .35s var(--ease-out); flex: none; }
 .loopName { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; color: var(--fg-subtle); white-space: nowrap; transition: color .35s; }

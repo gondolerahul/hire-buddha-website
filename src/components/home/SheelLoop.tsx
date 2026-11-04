@@ -3,7 +3,6 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 import { LiquidGold } from '@/components/visual/LiquidGold';
 import { Reveal } from '@/components/motion/primitives';
 import { ARCS } from '@/lib/site';

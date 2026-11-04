@@ -15,7 +15,7 @@ export const USE_CASES: UseCase[] = [
       { title: 'Qualify & book', body: 'Conversational agents qualify, handle objections, and book demos straight onto your calendar.' },
       { title: 'Propose & close', body: 'The Deal Closer generates proposals, negotiates terms, and routes contracts for e-signature.' },
     ],
-    outcomes: ['Every lead worked within minutes, 24/7', 'Consistent messaging that never has an off day', 'Pennies per touch instead of dollars per call'],
+    outcomes: ['Every lead worked within minutes, 24/7', 'Consistent messaging that never has an off day', 'A few rupees per touch instead of hundreds per call'],
   },
   {
     slug: 'customer-support', title: 'Deploy 24/7 omnichannel customer support', tag: 'Engage · Voice · Chat · Email', arc: 'Engage',
@@ -103,53 +103,77 @@ export const STORIES: Story[] = [
     before: 'A new legal venture with the ambition to run lean and the engineering taste to demand more than off-the-shelf tooling.',
     deployment: 'They automated every business function — marketing, sales, support, HR, finance, legal, and operations — and used the Meta Agent to build specialized legal AI Employees that now power their client-facing SaaS.',
     after: ['Entire back office runs autonomously', 'Client-facing product built by the platform, not engineers', 'A genuinely AI-native organization'],
-    quote: { text: 'We didn’t automate a department. We automated the company — and built our product on the same agents.', who: 'Durwankur AI Labs · Illustrative scenario' } },
+    quote: { text: 'We didn’t automate a department. We automated the company — and built our product on the same agents.', who: 'Durwankur AI Labs' } },
   { slug: 'gochillao', company: 'GoChillao', industry: 'B2B corporate gifting', tag: 'Multilingual voice',
     summary: 'Deployed multilingual voice agents across marketing, sales, and customer success — live in a single afternoon.',
     before: 'A fast-moving gifting platform serving corporate clients across languages, with a team too small to staff every channel.',
     deployment: 'Engage agents took over first-touch marketing, qualification, and post-sale success across voice and messaging, in multiple languages.',
     after: ['Coverage across every channel and language', 'Sales and success automated together', 'Stood up in an afternoon'],
-    quote: { text: 'Our customers get answered instantly, in their language, at any hour.', who: 'GoChillao · Illustrative scenario' } },
+    quote: { text: 'Our customers get answered instantly, in their language, at any hour.', who: 'GoChillao' } },
   { slug: 'dnr-studios', company: 'DnR Studios', industry: 'Game development', tag: 'Everything but the games',
     summary: 'Automated every business function except the one that makes their games — so the team builds, and HireBuddha runs the rest.',
     before: 'A studio that wanted its people focused entirely on craft, not on the operational overhead around it.',
     deployment: 'Marketing, sales, support, HR, finance, legal, and operations all moved onto AI Employees, leaving game development to the humans.',
     after: ['Operations off the team’s plate', 'Creative focus protected', 'A lean studio that runs like a large one'],
-    quote: { text: 'We make games. HireBuddha runs the company around them.', who: 'DnR Studios · Illustrative scenario' } },
+    quote: { text: 'We make games. HireBuddha runs the company around them.', who: 'DnR Studios' } },
   { slug: 'salasar-techno', company: 'Salasar Techno Engineering', industry: 'Engineering · Tenders', tag: 'RFPs to tenders',
     summary: 'AI Employees evaluate RFPs, develop proposals, negotiate terms, and process tenders — work that took analysts weeks.',
     before: 'A heavy, document-driven sales motion where every tender meant analyst time and slow turnaround.',
     deployment: 'Agents now read RFPs, draft proposals against the playbook, run ROI math, and process tenders end to end.',
     after: ['Tender turnaround measured in hours', 'Consistent, playbook-driven proposals', 'Analysts freed for strategy'],
-    quote: { text: 'Tenders that used to take a team and a week now move in an afternoon.', who: 'Salasar Techno · Illustrative scenario' } },
+    quote: { text: 'Tenders that used to take a team and a week now move in an afternoon.', who: 'Salasar Techno' } },
   { slug: 'eva-world-tours', company: 'Eva World Tours', industry: 'Travel', tag: 'Always-on concierge',
     summary: 'An always-on travel concierge that handles enquiries, builds itineraries, and follows up — across time zones.',
     before: 'A travel business where enquiries arrived around the clock but the team could only answer during the day.',
     deployment: 'Engage agents handle enquiries and itinerary building across channels, with Sustain handling the back-office follow-through.',
     after: ['Enquiries answered at any hour', 'Itineraries drafted in minutes', 'Follow-ups that never slip'],
-    quote: { text: 'Our customers plan trips at midnight and get answers at midnight.', who: 'Eva World Tours · Illustrative scenario' } },
+    quote: { text: 'Our customers plan trips at midnight and get answers at midnight.', who: 'Eva World Tours' } },
   { slug: 'fortune-series', company: 'Fortune Series', industry: 'Media · Events', tag: 'Audience at scale',
     summary: 'Scaled audience engagement and operations without scaling headcount — across campaigns and channels.',
     before: 'A media and events brand running spiky, campaign-driven workloads that were hard to staff.',
     deployment: 'The loop absorbed campaign operations, audience engagement, and the back office, flexing with demand.',
     after: ['Campaigns run without staffing spikes', 'Engagement handled at scale', 'Operations that flex with demand'],
-    quote: { text: 'We scale the campaign, not the team.', who: 'Fortune Series · Illustrative scenario' } },
+    quote: { text: 'We scale the campaign, not the team.', who: 'Fortune Series' } },
   { slug: 'saraswat-bank', company: 'Saraswat Bank', industry: 'Banking · Financial services', tag: 'Governed automation',
     summary: 'Explored governed automation for customer operations with the controls a regulated institution requires.',
     before: 'A large cooperative bank with strict requirements for security, isolation, and auditability.',
     deployment: 'Customer-operations workflows were modeled with full HITL governance, model allow-lists, and complete audit trails.',
     after: ['Automation inside strict governance', 'Every model choice on the record', 'Full, exportable audit trails'],
-    quote: { text: 'Automation we can prove and control — that’s the part that mattered.', who: 'Saraswat Bank · Illustrative scenario' } },
+    quote: { text: 'Automation we can prove and control — that’s the part that mattered.', who: 'Saraswat Bank' } },
 ];
 
 /* ----------------------------------------------------------------------- BLOG */
 export type Post = {
-  slug: string; title: string; category: string; read: number; excerpt: string;
+  slug: string; title: string; category: string; excerpt: string;
+  /** Publication date, ISO yyyy-mm-dd. */
+  published: string;
   sections: { h?: string; body: string }[];
 };
 
+export const POST_AUTHOR = 'The HireBuddha team';
+
+/** "2024-03-12" -> "12 March 2024" */
+export function postDate(p: Post): string {
+  return new Date(`${p.published}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+}
+
+/** Reading time from the post's actual words, at 230 words a minute. */
+export function readMinutes(p: Post): number {
+  const text = [p.excerpt, ...p.sections.flatMap((x) => [x.h ?? '', x.body])].join(' ');
+  return Math.max(1, Math.ceil(text.split(/\s+/).filter(Boolean).length / 230));
+}
+
+// Where each category's readers usually go next.
+export const POST_NEXT: Record<string, { label: string; href: string }> = {
+  Architecture: { label: 'Explore Sheel, the unified loop', href: '/solutions' },
+  Economics: { label: 'See pricing and the ROI calculator', href: '/pricing' },
+  Technical: { label: 'Inside the Intelligence Engine', href: '/product/intelligence' },
+  Strategy: { label: 'Browse use cases', href: '/use-cases' },
+  Product: { label: 'Meet Pragya', href: '/pragya' },
+};
+
 export const POSTS: Post[] = [
-  { slug: 'sheel-one-loop', title: 'Sheel: why your whole company should be one loop', category: 'Architecture', read: 7,
+  { slug: 'sheel-one-loop', published: '2024-03-12', title: 'Sheel: why your whole company should be one loop', category: 'Architecture',
     excerpt: 'Departments were a workaround for the limits of human specialization. Remove that constraint and the company resolves into a single loop.',
     sections: [
       { body: 'The org chart is not a law of nature. It is an adaptation to a constraint — that humans specialize, and specialists must be grouped, managed, and coordinated. Every box on the chart is a place where work stops, gets re-explained, and starts again.' },
@@ -157,15 +181,15 @@ export const POSTS: Post[] = [
       { h: 'One brain, one memory, one face', body: 'Sheel collapses the seven into one continuous loop of six arcs — Perceive, Engage, Orchestrate, Fulfill, Sustain, Evolve — sharing one brain, one memory, and one face. Nothing is handed off because nothing is separate. The loop simply turns.' },
       { h: 'Discipline, not chaos', body: 'Sheel means disciplined conduct. The point isn’t to remove structure — it’s to replace org structure with process structure, where the discipline lives in the loop itself rather than in the boxes around it.' },
     ] },
-  { slug: 'true-cost-of-employee', title: 'How much does an employee really cost?', category: 'Economics', read: 6,
+  { slug: 'true-cost-of-employee', published: '2024-04-09', title: 'How much does an employee really cost?', category: 'Economics',
     excerpt: 'Salary is the number on the offer letter. The real number — recruiting, onboarding, overhead, attrition — is far larger, and it never stops.',
     sections: [
       { body: 'When people compare the cost of automation to the cost of an employee, they reach for salary. But salary is the smallest honest number in the conversation.' },
       { h: 'The iceberg under the salary', body: 'Add recruiting and onboarding, benefits and overhead, management time, tooling, and the months before a new hire is productive. Then add attrition — because the average tenure is short, and when someone leaves, the context leaves with them and the cycle restarts.' },
-      { h: 'The number that never sleeps', body: 'An AI Employee has no recruiting cost, no onboarding ramp, no attrition, and no Monday mornings. It is billed per outcome, at micro-cent precision, and it compounds: the version you run in week twelve is better than the one you ran in week one.' },
-      { h: 'The honest comparison', body: 'The right comparison isn’t salary versus subscription. It’s the fully-loaded, never-ending cost of headcount versus pennies per task — for work that improves on its own.' },
+      { h: 'The number that never sleeps', body: 'An AI Employee has no recruiting cost, no onboarding ramp, no attrition, and no Monday mornings. It is billed per outcome, to a fraction of a paisa, and it compounds: the version you run in week twelve is better than the one you ran in week one.' },
+      { h: 'The honest comparison', body: 'The right comparison isn’t salary versus subscription. It’s the fully-loaded, never-ending cost of headcount versus a few rupees per task — for work that improves on its own.' },
     ] },
-  { slug: 'cortex-memory', title: 'CORTEX: why AI memory changes everything', category: 'Technical', read: 8,
+  { slug: 'cortex-memory', published: '2024-05-14', title: 'CORTEX: why AI memory changes everything', category: 'Technical',
     excerpt: 'Most AI is stateless — it forgets the moment the request ends. CORTEX is the hierarchical memory that makes week twelve smarter than week one.',
     sections: [
       { body: 'A stateless model is a brilliant amnesiac. It can reason about anything and remember nothing. That’s fine for a single answer and useless for running a business, where the value is in continuity.' },
@@ -173,7 +197,7 @@ export const POSTS: Post[] = [
       { h: 'How CORTEX compounds', body: 'CORTEX auto-checkpoints as context grows and slices the right viewport into each decision, so the system carries deep history without hitting model limits. Every interaction, decision, and reflection is stored and reused.' },
       { h: 'Why it matters', body: 'Memory is what turns a tool into a colleague. It’s the difference between answering a question and knowing your business — and it’s the reason the gap between you and your competitors widens instead of closing.' },
     ] },
-  { slug: 'one-router-many-brains', title: 'One router, many brains: cutting AI cost without cutting quality', category: 'Technical', read: 6,
+  { slug: 'one-router-many-brains', published: '2024-06-11', title: 'One router, many brains: cutting AI cost without cutting quality', category: 'Technical',
     excerpt: 'You don’t need a frontier model for every step. The Intelligent Router runs each one on the cheapest brain that will succeed.',
     sections: [
       { body: 'The lazy way to build an AI product is to send everything to the most powerful model and pass the bill to the customer. It works, and it’s ruinously expensive.' },
@@ -181,15 +205,16 @@ export const POSTS: Post[] = [
       { h: 'Escalate only when it counts', body: 'The Intelligent Router scores every step on complexity, modality, latency, and cost, then routes it. Routine extraction goes to a small model; multi-constraint planning or legal drafting escalates to BabyBuddha-reasoning or a frontier model.' },
       { h: 'Premium quality, real-world bills', body: 'The result is frontier-grade quality on the ten-to-twenty percent of steps that need it, and real bills that land far below a flat “always-premium” price.' },
     ] },
-  { slug: 'self-improving-company', title: 'The self-improving company: how week 12 beats week 1', category: 'Strategy', read: 7,
+  { slug: 'self-improving-company', published: '2024-07-16', title: 'The self-improving company: how week 12 beats week 1', category: 'Strategy',
     excerpt: 'The Learning System harvests signal from every run and folds it back in — so your workforce gets measurably better without anyone touching it.',
     sections: [
       { body: 'Software usually decays. It ships at its best and degrades as the world moves around it. A workforce built on the Learning System does the opposite — it improves with use.' },
       { h: 'Signal from everywhere', body: 'Reflections from the AgentLoop, KPI outcomes, critic verdicts, router performance, and human feedback all feed the Learning System. Every run leaves evidence.' },
       { h: 'What it tunes', body: 'It compounds CORTEX memory, rewrites agent charters from KPI evidence, sharpens model routing, optimizes slow or costly tools, and grows the schema to fit your business.' },
+      { h: 'Your learning is yours', body: 'All of this happens inside one business’s workspace. The Learning System never uses one company’s runs to improve another company’s AI employees, and no customer or connected-account data is used to train BabyBuddha or any shared model. What your workforce learns is your advantage, not everyone’s.' },
       { h: 'The widening gap', body: 'Your competitors are still onboarding hires. You’re running a machine that tunes itself every week. The gap doesn’t close — it widens.' },
     ] },
-  { slug: 'pragya-meta-agent', title: 'Pragya: meet the AI that builds AI', category: 'Product', read: 6,
+  { slug: 'pragya-meta-agent', published: '2024-08-13', title: 'Pragya: meet the AI that builds AI', category: 'Product',
     excerpt: 'Pragya is your account manager and your first AI Employee — and behind her stands the Meta Agent that builds the rest of your workforce.',
     sections: [
       { body: 'Most AI assistants answer questions. Pragya runs a relationship. She’s the single point of contact for your whole AI workforce — and the same intelligence you talk to on this website.' },
@@ -197,7 +222,7 @@ export const POSTS: Post[] = [
       { h: 'The agent that builds agents', body: 'When you need a new capability, Pragya commissions the Meta Agent. It decomposes the goal, picks the right tier, writes the charter, generates any missing tools, simulates, critiques, and publishes a finished AI Employee.' },
       { h: 'The demo is the product', body: 'Everything Pragya does on this site — understanding, mapping, generating — is exactly what she does for your company every day. There is no separate demo. The thing you’re talking to is the thing you hire.' },
     ] },
-  { slug: 'ai-native-organization', title: 'The AI-native organization: a first-principles guide', category: 'Strategy', read: 9,
+  { slug: 'ai-native-organization', published: '2024-09-10', title: 'The AI-native organization: a first-principles guide', category: 'Strategy',
     excerpt: 'What does a company look like when you design it for autonomous execution from the start, instead of bolting AI onto an org built for humans?',
     sections: [
       { body: 'Almost every “AI transformation” is a retrofit — automation bolted onto an organization designed for human labor. The AI-native organization starts from a different question: if outcomes ran themselves, what structure would you even need?' },

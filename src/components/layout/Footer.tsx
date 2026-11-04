@@ -1,29 +1,29 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import { FOOTER_NAV, SITE } from '@/lib/site';
-import { talkToPragya } from '@/lib/pragya';
-import { Reveal } from '@/components/motion/primitives';
+import { FOOTER_NAV, LEGAL_NAV } from '@/lib/site';
+import { company, otherProducts, SIGNUP_URL } from '@/config/company';
+import { PragyaButton } from '@/components/pragya/PragyaButton';
+import { FooterWordmark } from './FooterWordmark';
 import s from './Footer.module.css';
 
+// A server component, so the legal identity below is in every page's HTML and
+// the year is computed on the server.
 export function Footer() {
-  const reduce = useReducedMotion();
+  const year = new Date().getFullYear();
 
   return (
     <footer className={s.footer}>
       <div className={`u-container u-container--wide ${s.top}`}>
         <div className={s.brand}>
-          <Link href="/" className={s.brandTop} aria-label="HireBuddha — home">
+          <Link href="/" className={s.brandTop} aria-label="HireBuddha home">
             <Image src="/images/logo-mark-gold.svg" alt="" width={13} height={32} className={s.brandMark} />
             <span className={s.brandName}>Hire<b>Buddha</b></span>
           </Link>
           <p className={s.tagline}>Stop hiring. Start deploying.<br />Towards digital enlightenment.</p>
           <div className={s.ctaRow}>
-            <Link href="/contact" className="btn btn-gold">Get Started <ArrowUpRight size={16} /></Link>
-            <button className="btn btn-ghost" onClick={() => talkToPragya()}>Talk to Pragya</button>
+            <a href={SIGNUP_URL} className="btn btn-gold">Start Free <ArrowUpRight size={16} /></a>
+            <PragyaButton />
           </div>
         </div>
 
@@ -41,30 +41,49 @@ export function Footer() {
         </nav>
       </div>
 
+      <div className={`u-container u-container--wide ${s.company}`}>
+        <address className={s.companyBlock}>
+          <span className={s.companyName}>{company.legalName}</span>
+          <span>CIN {company.cin}</span>
+          <span>Registered office: {company.hq.full}</span>
+          <span>
+            <a href={`mailto:${company.email.contact}`} className={s.inlineLink}>{company.email.contact}</a>
+            {' · '}
+            <a href={`tel:${company.phone.tel}`} className={s.inlineLink}>{company.phone.display}</a>
+            {' · '}{company.hours}
+          </span>
+        </address>
+        <div className={s.companyBlock}>
+          <span>
+            HireBuddha is a product of{' '}
+            <a href={company.url} className={s.inlineLink} target="_blank" rel="noopener">{company.legalName}</a>.
+          </span>
+          <span>
+            Other products:{' '}
+            {otherProducts.map((p, i) => (
+              <span key={p.name}>
+                {i > 0 && ' · '}
+                {p.live
+                  ? <a href={p.url} className={s.inlineLink} target="_blank" rel="noopener">{p.name}</a>
+                  : <>{p.name} (launching soon)</>}
+              </span>
+            ))}
+          </span>
+        </div>
+        <nav className={s.legalNav} aria-label="Legal">
+          {LEGAL_NAV.map((l) => <Link key={l.href} href={l.href} className={s.legalLink}>{l.label}</Link>)}
+        </nav>
+      </div>
+
       <div className={`u-container u-container--wide ${s.bottom}`}>
-        <span className={s.meta}>© {new Date().getFullYear()} {SITE.parent}. All rights reserved.</span>
-        <span className={s.meta}>{SITE.tagline}</span>
+        <span className={s.meta}>© {year} {company.legalName}. All rights reserved.</span>
         <div className={s.socials}>
-          <a className={s.social} href="https://x.com/buddhalab" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer"><XIcon /></a>
-          <a className={s.social} href="https://linkedin.com/company/buddha-cognitive-lab" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><InIcon /></a>
+          <a className={s.social} href={company.x} aria-label="Buddha Cognitive Lab on X" target="_blank" rel="noopener noreferrer"><XIcon /></a>
+          <a className={s.social} href={company.linkedin} aria-label="Buddha Cognitive Lab on LinkedIn" target="_blank" rel="noopener noreferrer"><InIcon /></a>
         </div>
       </div>
 
-      <Reveal y={40} amount={0.4}>
-        {/* Molten gold pours through the outlined wordmark once it enters view. */}
-        <div className={s.wordmarkWrap} aria-hidden>
-          <div className={s.wordmark}>HireBuddha</div>
-          <motion.div
-            className={`${s.wordmark} ${s.wordmarkFill}`}
-            initial={reduce ? false : { clipPath: 'inset(-10% 100% -10% 0)' }}
-            whileInView={{ clipPath: 'inset(-10% 0% -10% 0)' }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-          >
-            HireBuddha
-          </motion.div>
-        </div>
-      </Reveal>
+      <FooterWordmark />
     </footer>
   );
 }

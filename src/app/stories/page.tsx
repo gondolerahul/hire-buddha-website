@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { PageHero, Section, CTABand } from '@/components/page/kit';
@@ -6,11 +5,13 @@ import { Stagger, StaggerItem } from '@/components/motion/primitives';
 import { STORIES } from '@/lib/content';
 import k from '@/components/page/kit.module.css';
 import c from '@/components/page/content.module.css';
+import { buildMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: 'Impact Stories',
   description: 'How companies run on HireBuddha — from a whole AI-native legal firm to multilingual voice agents, governed banking automation, and studios that automate everything but their craft.',
-};
+  path: '/stories',
+});
 
 export default function StoriesPage() {
   return (
@@ -19,7 +20,7 @@ export default function StoriesPage() {
         scene="embers"
         eyebrow="Impact Stories"
         title="Built by the platform. Run by the loop."
-        lead="How real companies put HireBuddha to work across their operations. Illustrative scenarios, grounded in the product."
+        lead="How real companies put HireBuddha to work across their operations, shared with their permission."
         ctaPrimary="Start Free"
         ctaPragya="Talk to Pragya"
         visual="ring"
@@ -39,7 +40,7 @@ export default function StoriesPage() {
           ))}
         </Stagger>
       </Section>
-      <CTABand title="Write your own story." sub="Start free, or talk to Pragya about what your company could run on the loop." primary="Get Started Free" />
+      <CTABand title="Write your own story." sub="Start free, or talk to Pragya about what your company could run on the loop." primary="Start Free" />
     </>
   );
 }

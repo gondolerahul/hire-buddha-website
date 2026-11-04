@@ -69,7 +69,7 @@
   /* ------------------------------------------------------------------- TEXT */
   --fg:        #f6f1e9;
   --fg-muted:  #b3aaa0;
-  --fg-subtle: #7c746b;
+  --fg-subtle: #8a8278;
   --fg-faint:  #544d46;
 
   /* ----------------------------------------------------------- LINES & BORDERS */
@@ -172,54 +172,9 @@
   --z-base: 0;
   --z-canvas: 1;
   --z-content: 2;
-  --z-cursor: 60;
+  --z-cursor: 100;  /* above every layer, including modals */
   --z-header: 70;
   --z-overlay: 80;
   --z-modal: 90;
 }
 
-/* ============================================================ LIGHT THEME */
-[data-theme="light"] {
-  --bg:        #f6f2ea;
-  --surface:   #fffdf9;
-  --surface-2: #f1ece2;
-  --surface-3: #e9e2d5;
-
-  --fg:        #1a1611;
-  --fg-muted:  #5c554b;
-  --fg-subtle: #8a8074;
-  --fg-faint:  #b6ac9d;
-
-  --border:        rgba(40,30,15,.10);
-  --border-strong: rgba(40,30,15,.18);
-  --border-gold:   rgba(200,140,40,.50);
-
-  --accent:        #c98f2f;
-  --accent-hover:  #b87f25;
-  --accent-press:  #a06e1f;
-  --accent-quiet:  rgba(201,143,47,.12);
-  --gold-300:      #b9791f;
-
-  --positive: #4f8d63;
-  --negative: #bb4a34;
-
-  --glow-gold: radial-gradient(circle at center, rgba(201,143,47,.22) 0%, rgba(201,143,47,.06) 42%, transparent 70%);
-  --shadow-md: 0 12px 34px -14px rgba(60,45,20,.28);
-  --shadow-lg: 0 30px 72px -22px rgba(60,45,20,.32);
-
-  --glass-tint:        rgba(255,253,249,.55);
-  --glass-tint-light:  rgba(255,255,255,.42);
-  --glass-tint-gold:   rgba(201,143,47,.16);
-  --glass-tint-strong: rgba(250,247,241,.72);
-  --glass-border: rgba(40,30,15,.12);
-  --glass-edge:
-    0 10px 30px -12px rgba(60,45,20,.30),
-    inset 0 1px 0 rgba(255,255,255,.85),
-    inset 0 -1px 1px rgba(60,45,20,.10);
-  --glass-edge-gold:
-    0 12px 36px -12px rgba(60,45,20,.32),
-    inset 0 1px 0 rgba(255,255,255,.9),
-    inset 0 0 0 1px rgba(201,143,47,.30),
-    inset 0 -2px 4px rgba(201,143,47,.20);
-  --glass-sheen: linear-gradient(135deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,.12) 24%, transparent 48%);
-}
